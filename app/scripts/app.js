@@ -7,17 +7,53 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'LocalStorageModule'
   ])
+  .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('ls');
+  }])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/index.html',
+        controller: 'indexCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/goodsList', {
+        templateUrl: 'views/goodsList.html',
+        controller: 'goodsListCtrl'
+      })
+      .when('/cart', {
+        templateUrl: 'views/cart.html',
+        controller: 'cartCtrl'
+      })
+      .when('/shoppingList', {
+        templateUrl: 'views/shoppingList.html',
+        controller: 'shoppingListCtrl'
+      })
+      .when('/manageCategory', {
+        templateUrl: 'views/manageCategory.html',
+        controller: 'manageCategoryCtrl'
+      })
+      .when('/manageGoodsItems', {
+        templateUrl: 'views/manageGoodsItems.html',
+        controller: 'manageGoodsItemsCtrl'
+      })
+      .when('/addCategory', {
+        templateUrl: 'views/addCategory.html',
+        controller: 'manageCategoryCtrl'
+      })
+      .when('/addGoodsItems', {
+        templateUrl: 'views/addGoodsItems.html',
+        controller: 'manageGoodsItemsCtrl'
+      })
+      .when('/modifyCategory/:id', {
+        templateUrl: 'views/modifyCategory.html',
+        controller: 'modifyCategoryCtrl'
+      })
+      .when('/modifyGoodsItems/:barcode', {
+        templateUrl: 'views/modifyGoodsItems.html',
+        controller: 'modifyGoodsItemsCtrl'
       })
       .otherwise({
         redirectTo: '/'
