@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("manageGoodsItemsCtrl", function () {
+describe("manageGoodsItemsCtrl", function () {
 
   var createController, $scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice, localStorageService;
 
@@ -42,7 +42,7 @@ xdescribe("manageGoodsItemsCtrl", function () {
 
     createController();
 
-    spyOn(Operatecategorieservice, 'getcategoryById').andReturn({id: 0, name: '0'});
+    spyOn(Operatecategorieservice, 'getcategoryById').and.returnValue({id: 0, name: '0'});
     $scope.getCategoryName(id);
 
     expect($scope.getCategoryName(id)).toBe('0');
