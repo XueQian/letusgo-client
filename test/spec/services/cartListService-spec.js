@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("CartItemService", function () {
+describe("CartItemService", function () {
 
   var CartItemService, localStorageService;
 
@@ -25,7 +25,7 @@ xdescribe("CartItemService", function () {
 
       var cartItems = null;
 
-      spyOn(localStorageService, 'get').andReturn(cartItems);
+      spyOn(localStorageService, 'get').and.returnValue(cartItems);
 
       expect(CartItemService.getTotalMoney(cartItems)).toBe(0);
     });
@@ -37,7 +37,7 @@ xdescribe("CartItemService", function () {
         {item: {barcode: 'ITEM00002', category: '手机数码', name: '手机１', price: 1111, unit: '件'}, count: 1},
       ];
 
-      spyOn(localStorageService, 'get').andReturn(cartItems);
+      spyOn(localStorageService, 'get').and.returnValue(cartItems);
 
       expect(CartItemService.getTotalMoney(cartItems)).toBe(1133);
 
