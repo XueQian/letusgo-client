@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("manageCategoryCtrl", function () {
+describe("manageCategoryCtrl", function () {
 
   var $scope, GoodsItemService, createController, localStorageService, Operatecategorieservice, Operategoodsitemservice;
 
@@ -43,7 +43,7 @@ xdescribe("manageCategoryCtrl", function () {
     it('getItemById', function () {
       var id = 1;
       var result = true;
-      spyOn(Operategoodsitemservice, 'getItemById').andReturn(result);
+      spyOn(Operategoodsitemservice, 'getItemById').and.returnValue(result);
       createController();
       expect($scope.getItemById(id)).toBe(true);
     });
@@ -60,7 +60,7 @@ xdescribe("manageCategoryCtrl", function () {
 
     createController();
 
-    spyOn(Operategoodsitemservice, 'getItemById').andReturn(result);
+    spyOn(Operategoodsitemservice, 'getItemById').and.returnValue(result);
     spyOn($scope.categories, 'splice');
     spyOn(GoodsItemService, 'set');
     $scope.deleteCategory(index, id);
@@ -80,7 +80,7 @@ xdescribe("manageCategoryCtrl", function () {
 
     createController();
 
-    spyOn(Operategoodsitemservice, 'getItemById').andReturn(result);
+    spyOn(Operategoodsitemservice, 'getItemById').and.returnValue(result);
     spyOn($scope.categories, 'splice');
     spyOn(GoodsItemService, 'set');
     $scope.deleteCategory(index, id);
