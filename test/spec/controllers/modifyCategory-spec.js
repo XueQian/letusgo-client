@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("modifyCategoryCtrl", function () {
+describe("modifyCategoryCtrl", function () {
 
   var createController, $scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice, $routeParams;
 
