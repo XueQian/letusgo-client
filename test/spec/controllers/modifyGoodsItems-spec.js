@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("modifyGoodsItemsCtrl", function () {
+describe("modifyGoodsItemsCtrl", function () {
 
   var createController, $scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice, $routeParams;
 
@@ -37,8 +37,8 @@ xdescribe("modifyGoodsItemsCtrl", function () {
   });
 
   it('getGoodsItemsByBarcode,categories and category', function () {
-    spyOn(Operategoodsitemservice, 'getGoodsItemsByBarcode').andReturn({barcode: 'ITEM00005', category: '1', name: '用品１', price: 11, unit: '件'});
-    spyOn(Operatecategorieservice, 'loadcategories').andReturn([
+    spyOn(Operategoodsitemservice, 'getGoodsItemsByBarcode').and.returnValue({barcode: 'ITEM00005', category: '1', name: '用品１', price: 11, unit: '件'});
+    spyOn(Operatecategorieservice, 'loadcategories').and.returnValue([
       {id: 1, name: '测试1'},
       {id: 2, name: '测试2'}
     ]);
@@ -50,8 +50,8 @@ xdescribe("modifyGoodsItemsCtrl", function () {
   });
 
   it('modifyGoods', function () {
-    spyOn(Operategoodsitemservice, 'getGoodsItemsByBarcode').andReturn({barcode: 'ITEM00005', category: '1', name: '用品１', price: 11, unit: '件'});
-    spyOn(Operatecategorieservice, 'loadcategories').andReturn([
+    spyOn(Operategoodsitemservice, 'getGoodsItemsByBarcode').and.returnValue({barcode: 'ITEM00005', category: '1', name: '用品１', price: 11, unit: '件'});
+    spyOn(Operatecategorieservice, 'loadcategories').and.returnValue([
       {id: 1, name: '测试1'},
       {id: 2, name: '测试2'}
     ]);
