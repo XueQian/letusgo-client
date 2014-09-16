@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("Operatecategorieservice", function () {
+describe("Operatecategorieservice", function () {
 
   var Operategoodsitemservice, localStorageService;
 
@@ -18,7 +18,7 @@ xdescribe("Operatecategorieservice", function () {
   it('if itemList is null', function () {
     var itemList = '';
 
-    spyOn(localStorageService, 'get').andReturn(itemList);
+    spyOn(localStorageService, 'get').and.returnValue(itemList);
     spyOn(localStorageService, 'set');
     Operategoodsitemservice.loadGoodsItems();
 
@@ -38,14 +38,14 @@ xdescribe("Operatecategorieservice", function () {
 
     it('loadGoodsItems', function () {
 
-      spyOn(localStorageService, 'get').andReturn(itemList);
+      spyOn(localStorageService, 'get').and.returnValue(itemList);
       var result = Operategoodsitemservice.loadGoodsItems();
       expect(result.length).toBe(2);
     });
 
     it('getItemById true', function () {
       var id = 1;
-      spyOn(Operategoodsitemservice, 'loadGoodsItems').andReturn(itemList);
+      spyOn(Operategoodsitemservice, 'loadGoodsItems').and.returnValue(itemList);
 
       Operategoodsitemservice.getItemById(id);
       expect(Operategoodsitemservice.getItemById(id)).toBe(true);
@@ -54,7 +54,7 @@ xdescribe("Operatecategorieservice", function () {
 
     it('getItemById false', function () {
       var id = 0;
-      spyOn(Operategoodsitemservice, 'loadGoodsItems').andReturn(itemList);
+      spyOn(Operategoodsitemservice, 'loadGoodsItems').and.returnValue(itemList);
 
       Operategoodsitemservice.getItemById(id);
       expect(Operategoodsitemservice.getItemById(id)).toBe(false);
@@ -86,7 +86,7 @@ xdescribe("Operatecategorieservice", function () {
 
     it('getGoodsItemsByBarcode', function () {
       var barcode = 'ITEM00000';
-      spyOn(localStorageService, 'get').andReturn(itemList);
+      spyOn(localStorageService, 'get').and.returnValue(itemList);
       Operategoodsitemservice.getGoodsItemsByBarcode(barcode);
 
       expect(localStorageService.get).toHaveBeenCalledWith('itemList');
@@ -97,7 +97,7 @@ xdescribe("Operatecategorieservice", function () {
 
     it('modifyGoods', function () {
       var itemList = {barcode: 'ITEM00000', category: '0', name: '服装1', price: 11, unit: '件'};
-      spyOn(localStorageService, 'get').andReturn(itemList);
+      spyOn(localStorageService, 'get').and.returnValue(itemList);
       spyOn(localStorageService, 'set');
 
       Operategoodsitemservice.modifyGoods(itemList);
