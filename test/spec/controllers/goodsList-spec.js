@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("goodsListCtrl", function () {
+describe("goodsListCtrl", function () {
 
   var $scope, GoodsItemService, createController, localStorageService, Operatecategorieservice;
 
@@ -37,7 +37,7 @@ xdescribe("goodsListCtrl", function () {
         {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}
       ];
 
-      spyOn(GoodsItemService, 'get').andReturn(itemList);
+      spyOn(GoodsItemService, 'get').and.returnValue(itemList);
       createController();
     });
 
@@ -58,7 +58,7 @@ xdescribe("goodsListCtrl", function () {
       createController();
       $scope.addToCart(productItem);
 
-      expect(GoodsItemService.set.callCount).toEqual(4);
+      expect(GoodsItemService.set.call.count()).toEqual(4);
 
     });
 
@@ -68,7 +68,6 @@ xdescribe("goodsListCtrl", function () {
       expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
       expect($scope.$emit).toHaveBeenCalledWith('parent_goodsListActive');
 
-
     });
 
     it('addToCart  is ok', function () {
@@ -77,7 +76,7 @@ xdescribe("goodsListCtrl", function () {
 
       var cartList = null;
 
-      spyOn(GoodsItemService, 'get').andReturn(cartList);
+      spyOn(GoodsItemService, 'get').and.returnValue(cartList);
 
       createController();
       $scope.addToCart(productItem);
@@ -88,7 +87,7 @@ xdescribe("goodsListCtrl", function () {
     it('getCategoryName  is ok', function () {
       var id = 0;
       var result = {id: 0, name: '服装鞋包'};
-      spyOn(Operatecategorieservice, 'getcategoryById').andReturn(result);
+      spyOn(Operatecategorieservice, 'getcategoryById').and.returnValue(result);
 
       createController();
       expect($scope.getCategoryName(id)).toBe('服装鞋包');

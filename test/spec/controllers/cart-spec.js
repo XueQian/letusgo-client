@@ -67,7 +67,7 @@ describe("cartCtrl", function () {
 
       $scope.changeCount(item_);
 
-      expect(GoodsItemService.set.callCount).toEqual(2);
+      expect(GoodsItemService.set.call.count()).toEqual(2);
     });
 
     it('same name, count=count', function () {
