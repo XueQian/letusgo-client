@@ -28,14 +28,14 @@ describe("cartCtrl", function () {
   });
 
   describe('$emit', function () {
-    it('$emit', function () {
+    it('is correct', function () {
       spyOn($scope, '$emit');
       createController();
       expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
     });
   });
 
-  describe('operate cartItems', function () {
+  describe('cart operate', function () {
 
     var cartItems;
 
@@ -47,7 +47,7 @@ describe("cartCtrl", function () {
 
     });
 
-    it('cartItems is OK', function () {
+    it('cartItems correctly', function () {
       spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
       spyOn(CartItemService, 'getTotalMoney').and.returnValue(1);
 
@@ -55,19 +55,6 @@ describe("cartCtrl", function () {
       expect($scope.cartItems[0].name).toEqual('服装１');
       expect($scope.totalMoney).toEqual(1);
 
-    });
-
-    it('use localStorageService .set', function () {
-      var item_ = [
-        {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
-      ];
-      spyOn(GoodsItemService, 'set');
-
-      createController();
-
-      $scope.changeCount(item_);
-
-      expect(GoodsItemService.set.call.count()).toEqual(2);
     });
 
     it('same name, count=count', function () {

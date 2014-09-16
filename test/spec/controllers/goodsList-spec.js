@@ -27,7 +27,15 @@ describe("goodsListCtrl", function () {
     });
   });
 
-  describe('operate itemList', function () {
+  it('$emit correct', function () {
+    spyOn($scope, '$emit');
+    createController();
+    expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
+    expect($scope.$emit).toHaveBeenCalledWith('parent_goodsListActive');
+
+  });
+
+  describe('itemList operate', function () {
 
     var itemList;
 
@@ -41,15 +49,14 @@ describe("goodsListCtrl", function () {
       createController();
     });
 
-    it('products is OK', function () {
+    it('products correctly', function () {
 
       expect($scope.products[0].name).toEqual('服装１');
     });
 
-
   });
 
-  describe('addToCart .set ', function () {
+  describe('when addToCart() ', function () {
 
     it('use localStorageService .set', function () {
       var productItem = {barcode: 'ITEM00002', category: '手机数码', name: '手机１', price: 1111, unit: '件'};
@@ -58,15 +65,7 @@ describe("goodsListCtrl", function () {
       createController();
       $scope.addToCart(productItem);
 
-      expect(GoodsItemService.set.call.count()).toEqual(4);
-
-    });
-
-    it('$emit', function () {
-      spyOn($scope, '$emit');
-      createController();
-      expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
-      expect($scope.$emit).toHaveBeenCalledWith('parent_goodsListActive');
+      expect(GoodsItemService.set.calls.count()).toEqual(4);
 
     });
 
