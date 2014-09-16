@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("indexCtrl", function () {
+describe("indexCtrl", function () {
 
   var $scope, GoodsItemService, createController, $rootScope;
 
@@ -27,7 +27,7 @@ xdescribe("indexCtrl", function () {
 
   it('parent_totalCount', function () {
 
-    spyOn(GoodsItemService, 'getTotalCount').andReturn(2);
+    spyOn(GoodsItemService, 'getTotalCount').and.returnValue(2);
 
     createController();
     $scope.$digest();
