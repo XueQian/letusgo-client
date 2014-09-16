@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("GoodsItemService", function () {
+describe("GoodsItemService", function () {
 
   var GoodsItemService, localStorageService;
 
@@ -33,7 +33,7 @@ xdescribe("GoodsItemService", function () {
 
       var cartLists = null;
 
-      spyOn(localStorageService, 'get').andReturn(cartLists);
+      spyOn(localStorageService, 'get').and.returnValue(cartLists);
 
       expect(GoodsItemService.getTotalCount(cartLists)).toBe(0);
     });
@@ -46,7 +46,7 @@ xdescribe("GoodsItemService", function () {
         {iten: 'item3', count: 1}
       ];
 
-      spyOn(localStorageService, 'get').andReturn(cartLists);
+      spyOn(localStorageService, 'get').and.returnValue(cartLists);
 
       expect(GoodsItemService.getTotalCount(cartLists)).toBe(4);
 
@@ -101,7 +101,7 @@ xdescribe("GoodsItemService", function () {
 
     it('localStorageService get is OK', function () {
 
-      spyOn(localStorageService, 'get').andReturn(cartLists);
+      spyOn(localStorageService, 'get').and.returnValue(cartLists);
 
       var result = GoodsItemService.get();
 
