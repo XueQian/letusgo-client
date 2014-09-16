@@ -1,6 +1,6 @@
 'use strict';
 
-describe("indexCtrl", function () {
+xdescribe("indexCtrl", function () {
 
   var $scope, GoodsItemService, createController, $rootScope;
 

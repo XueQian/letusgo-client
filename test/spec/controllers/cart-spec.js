@@ -48,8 +48,8 @@ describe("cartCtrl", function () {
     });
 
     it('cartItems is OK', function () {
-      spyOn(GoodsItemService, 'get').andReturn(cartItems);
-      spyOn(CartItemService, 'getTotalMoney').andReturn(1);
+      spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
+      spyOn(CartItemService, 'getTotalMoney').and.returnValue(1);
 
       createController();
       expect($scope.cartItems[0].name).toEqual('服装１');
@@ -79,8 +79,7 @@ describe("cartCtrl", function () {
       var cartItems = [
         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 0}
       ];
-      spyOn(GoodsItemService, 'get').andReturn(cartItems);
-      // console.log(cartItem.count);
+      spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
 
       createController();
       $scope.changeCount(item_);

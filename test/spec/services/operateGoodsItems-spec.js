@@ -1,6 +1,6 @@
 'use strict';
 
-describe("Operatecategorieservice", function () {
+xdescribe("Operatecategorieservice", function () {
 
   var Operategoodsitemservice, localStorageService;
 
