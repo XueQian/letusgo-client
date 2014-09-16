@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe("Operatecategorieservice", function () {
+describe("Operatecategorieservice", function () {
 
   var Operatecategorieservice, localStorageService;
 
@@ -17,7 +17,7 @@ xdescribe("Operatecategorieservice", function () {
   it('if categoryList is not null,loadcategories', function () {
     var categoryList = '';
 
-    spyOn(localStorageService, 'get').andReturn(categoryList);
+    spyOn(localStorageService, 'get').and.returnValue(categoryList);
     spyOn(localStorageService, 'set');
     Operatecategorieservice.loadcategories();
 
@@ -32,7 +32,7 @@ xdescribe("Operatecategorieservice", function () {
     ];
     it('loadcategories', function () {
 
-      spyOn(localStorageService, 'get').andReturn(categoryList);
+      spyOn(localStorageService, 'get').and.returnValue(categoryList);
       var result = Operatecategorieservice.loadcategories();
 
       expect(result).toEqual([
@@ -45,7 +45,7 @@ xdescribe("Operatecategorieservice", function () {
     it('getcategoryById', function () {
       var id = 1;
       var categories = null;
-      spyOn(localStorageService, 'get').andReturn(categoryList);
+      spyOn(localStorageService, 'get').and.returnValue(categoryList);
 
       Operatecategorieservice.getcategoryById(id, categories);
 
@@ -65,7 +65,7 @@ xdescribe("Operatecategorieservice", function () {
 
     it('modifyCategory', function () {
       var category = {id: 1, name: '1'};
-      spyOn(localStorageService, 'get').andReturn(categoryList);
+      spyOn(localStorageService, 'get').and.returnValue(categoryList);
       spyOn(localStorageService, 'set');
 
       Operatecategorieservice.modifyCategory(category);
@@ -75,6 +75,5 @@ xdescribe("Operatecategorieservice", function () {
     });
 
   });
-
 
 });
