@@ -27,30 +27,68 @@ describe("cartCtrl", function () {
     });
   });
 
-  describe('$emit', function () {
-    it('is correct', function () {
+  describe('when load', function () {
+    it('it should emit to parent_cartActive', function () {
+      spyOn($scope, '$emit');
+      createController();
+      expect($scope.$emit).toHaveBeenCalledWith('parent_cartActive');
+    });
+
+    it('it should emit to parent_totalCount', function () {
       spyOn($scope, '$emit');
       createController();
       expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
     });
+
+    it('should call get in GoodsItemService', function () {
+      spyOn(GoodsItemService, 'get');
+      createController();
+      expect(GoodsItemService.get).toHaveBeenCalled();
+    });
+
+    it('should call getTotalMoney in CartItemService', function () {
+      spyOn(CartItemService, 'getTotalMoney');
+      createController();
+      expect(CartItemService.getTotalMoney).toHaveBeenCalled();
+    });
+
   });
 
-  describe('cart operate', function () {
+  describe('when changeCount,', function () {
 
     var cartItems;
 
     beforeEach(function () {
-
       cartItems = [
         {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}
       ];
-
     });
 
-    it('cartItems correctly', function () {
+    it('should call set in GoodsItemService 2 times', function () {
+      spyOn(GoodsItemService, 'set');
+      createController();
+      $scope.changeCount(cartItems);
+      expect(GoodsItemService.set).toHaveBeenCalled();
+      expect(GoodsItemService.set.calls.count()).toBe(2);
+    });
+
+    it('should call getTotalMoney in CartItemService 2 times', function () {
+      spyOn(CartItemService, 'getTotalMoney');
+      createController();
+      $scope.changeCount(cartItems);
+      expect(CartItemService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemService.getTotalMoney.calls.count()).toBe(2);
+    });
+
+    it('it should emit to parent_totalCount', function () {
+      spyOn($scope, '$emit');
+      createController();
+      expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
+    });
+
+    it('cartItems should return correct value', function () {
       spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
       spyOn(CartItemService, 'getTotalMoney').and.returnValue(1);
-
       createController();
       expect($scope.cartItems[0].name).toEqual('服装１');
       expect($scope.totalMoney).toEqual(1);
@@ -92,8 +130,6 @@ describe("cartCtrl", function () {
 
       expect(result).not.toEqual(1);
     });
-
-
   });
 
 });
