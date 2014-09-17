@@ -56,48 +56,14 @@ describe("cartCtrl", function () {
 
   describe('when changeCount,', function () {
 
-    var cartItems;
+    var item_;
 
     beforeEach(function () {
-      cartItems = [
-        {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}
-      ];
-    });
-
-    it('should call set in GoodsItemService 2 times', function () {
-      spyOn(GoodsItemService, 'set');
-      createController();
-      $scope.changeCount(cartItems);
-      expect(GoodsItemService.set).toHaveBeenCalled();
-      expect(GoodsItemService.set.calls.count()).toBe(2);
-    });
-
-    it('should call getTotalMoney in CartItemService 2 times', function () {
-      spyOn(CartItemService, 'getTotalMoney');
-      createController();
-      $scope.changeCount(cartItems);
-      expect(CartItemService.getTotalMoney).toHaveBeenCalled();
-      expect(CartItemService.getTotalMoney.calls.count()).toBe(2);
-    });
-
-    it('it should emit to parent_totalCount', function () {
-      spyOn($scope, '$emit');
-      createController();
-      expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
-    });
-
-    it('cartItems should return correct value', function () {
-      spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
-      spyOn(CartItemService, 'getTotalMoney').and.returnValue(1);
-      createController();
-      expect($scope.cartItems[0].name).toEqual('服装１');
-      expect($scope.totalMoney).toEqual(1);
-
+       item_ =
+      {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1};
     });
 
     it('same name, count=count', function () {
-      var item_ =
-      {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1};
 
       spyOn(CartItemService, 'getTotalMoney');
 
@@ -114,13 +80,11 @@ describe("cartCtrl", function () {
     });
 
     it('different name, count!=count', function () {
-      var item_ =
-      {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装2', 'price': 11, 'unit': '件'}, count: 1};
 
       spyOn(CartItemService, 'getTotalMoney');
 
       var cartItems = [
-        {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 0}
+        {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装2', 'price': 11, 'unit': '件'}, count: 0}
       ];
       spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
 
@@ -130,9 +94,30 @@ describe("cartCtrl", function () {
 
       expect(result).not.toEqual(1);
     });
+
+    it('should call set in GoodsItemService 2 times', function () {
+      spyOn(GoodsItemService, 'set');
+      createController();
+      $scope.changeCount(item_);
+      expect(GoodsItemService.set).toHaveBeenCalled();
+      expect(GoodsItemService.set.calls.count()).toBe(2);
+    });
+
+    it('should call getTotalMoney in CartItemService 2 times', function () {
+      spyOn(CartItemService, 'getTotalMoney');
+      createController();
+      $scope.changeCount(item_);
+      expect(CartItemService.getTotalMoney).toHaveBeenCalled();
+      expect(CartItemService.getTotalMoney.calls.count()).toBe(2);
+    });
+
+    it('it should emit to parent_totalCount', function () {
+      spyOn($scope, '$emit');
+      createController();
+      $scope.changeCount(item_);
+      expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
+    });
+
   });
 
 });
-
-
-
