@@ -31,53 +31,78 @@ describe("manageGoodsItemsCtrl", function () {
     });
   });
 
-  it('$emit', function () {
-    spyOn($scope, '$emit');
-    createController();
-    expect($scope.$emit).toHaveBeenCalledWith('parent_manageActive');
-  });
+  describe('when load', function () {
 
-  it('getCategoryName', function () {
-    var id = 0;
+    it('it should emit to parent_manageActive', function () {
+      spyOn($scope, '$emit');
+      createController();
+      expect($scope.$emit).toHaveBeenCalledWith('parent_manageActive');
+    });
 
-    createController();
+    it('should call loadGoodsItems in Operategoodsitemservice', function () {
+      spyOn(Operategoodsitemservice, 'loadGoodsItems');
+      createController();
+      expect(Operategoodsitemservice.loadGoodsItems).toHaveBeenCalled();
+    });
 
-    spyOn(Operatecategorieservice, 'getcategoryById').and.returnValue({id: 0, name: '0'});
-    $scope.getCategoryName(id);
+    it('should call loadcategories in Operatecategorieservice', function () {
+      spyOn(Operatecategorieservice, 'loadcategories');
+      createController();
+      expect(Operatecategorieservice.loadcategories).toHaveBeenCalled();
+    });
 
-    expect($scope.getCategoryName(id)).toBe('0');
-  });
-
-  it('deleteCategory', function () {
-
-    var index = 1;
-    $scope.products = [
-      {barcode: 1, name: '测试1'},
-      {barcode: 2, name: '测试2'}
-    ];
-    createController();
-
-    spyOn($scope.products, 'splice');
-    spyOn(GoodsItemService, 'set');
-    $scope.deleteCategory(index);
-
-    expect($scope.products.splice).toHaveBeenCalledWith(index, 1);
-    expect(GoodsItemService.set).toHaveBeenCalledWith('itemList', $scope.products);
+    it('should call loadcategories in GoodsItemService', function () {
+      spyOn(GoodsItemService, 'get');
+      createController();
+      expect(GoodsItemService.get).toHaveBeenCalled();
+    });
 
   });
 
-  it('addGoodsItems', function () {
-    $scope.item = {};
-    $scope.itemList = [
-      {}
-    ];
-    createController();
+  describe('when getCategoryName', function () {
 
-    spyOn(Operategoodsitemservice, 'addGoodsItems');
-    $scope.addGoodsItems();
+    it('should return correct value', function () {
+      var id = 0;
+      createController();
+      spyOn(Operatecategorieservice, 'getcategoryById').and.returnValue({id: 0, name: '0'});
+      $scope.getCategoryName(id);
+      expect($scope.getCategoryName(id)).toBe('0');
+    });
 
-    expect(Operategoodsitemservice.addGoodsItems).toHaveBeenCalledWith($scope.item, $scope.itemList);
+  });
 
-  })
+  describe('when deleteCategory', function () {
+
+    it('should call set in GoodsItemService and should call splice', function () {
+      var index = 1;
+      $scope.products = [
+        {barcode: 1, name: '测试1'},
+        {barcode: 2, name: '测试2'}
+      ];
+      createController();
+      spyOn($scope.products, 'splice');
+      spyOn(GoodsItemService, 'set');
+      $scope.deleteCategory(index);
+      expect($scope.products.splice).toHaveBeenCalledWith(index, 1);
+      expect(GoodsItemService.set).toHaveBeenCalledWith('itemList', $scope.products);
+
+    });
+
+  });
+
+  describe('when deleteCategory', function () {
+
+    it('should call addGoodsItems in Operategoodsitemservice', function () {
+      $scope.item = {};
+      $scope.itemList = [
+        {}
+      ];
+      createController();
+      spyOn(Operategoodsitemservice, 'addGoodsItems');
+      $scope.addGoodsItems();
+      expect(Operategoodsitemservice.addGoodsItems).toHaveBeenCalledWith($scope.item, $scope.itemList);
+    })
+
+  });
 
 });

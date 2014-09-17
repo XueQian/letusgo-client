@@ -20,7 +20,7 @@ angular.module('letusgoApp')
 
     $scope.categories = Operatecategorieservice.loadcategories();
 
-    $scope.itemList = localStorageService.get('itemList');
+    $scope.itemList = GoodsItemService.get('itemList');
 
     $scope.addGoodsItems = function () {
 
