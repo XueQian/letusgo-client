@@ -51,18 +51,6 @@ describe("indexCtrl", function () {
 
   });
 
-  it('parent_totalCount===0', function () {
-
-    createController();
-    $scope.$digest();
-
-    $rootScope.$broadcast('parent_totalCount===0');
-    $scope.$digest();
-
-    expect($scope.totalCount).toBe(0);
-
-  });
-
   it('parent_indexActive', function () {
 
     createController();
