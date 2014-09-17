@@ -20,6 +20,12 @@ describe("GoodsItemService", function () {
 
       expect(angular.isFunction(GoodsItemService.loadItems)).toBe(true);
     });
+
+    it('loadItem return []',function() {
+      spyOn(localStorageService,'get');
+      var result = GoodsItemService.loadItems();
+      expect(result.length).toBe(0);
+    })
   });
 
   describe("getTotalCount", function () {
