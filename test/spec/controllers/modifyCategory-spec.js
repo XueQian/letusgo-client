@@ -30,21 +30,37 @@ describe("modifyCategoryCtrl", function () {
     });
   });
 
-  it('$emit', function () {
-    spyOn($scope, '$emit');
-    createController();
-    expect($scope.$emit).toHaveBeenCalledWith('parent_manageGoodsActive');
+  describe('when load', function () {
+
+    it('it should emit to parent_goodsListActive', function () {
+      spyOn($scope, '$emit');
+      createController();
+      expect($scope.$emit).toHaveBeenCalledWith('parent_manageGoodsActive');
+    });
+
+    it('should call getcategoryById in Operatecategorieservice', function () {
+      spyOn(Operatecategorieservice, 'getcategoryById');
+      createController();
+      expect(Operatecategorieservice.getcategoryById).toHaveBeenCalled();
+    });
+
+    it('should call loadcategories in Operatecategorieservice', function () {
+      spyOn(Operatecategorieservice, 'loadcategories');
+      createController();
+      expect(Operatecategorieservice.loadcategories).toHaveBeenCalled();
+    });
+
   });
 
-  it('modifyCategory', function () {
-    $scope.category = {};
+  describe('when modifyCategory', function () {
 
-    createController();
-    spyOn(Operatecategorieservice, 'modifyCategory');
-
-    $scope.modifyCategory();
-
-    expect(Operatecategorieservice.modifyCategory).toHaveBeenCalledWith($scope.category);
+    it('should call modifyCategory in Operatecategorieservice', function () {
+      $scope.category = {};
+      createController();
+      spyOn(Operatecategorieservice, 'modifyCategory');
+      $scope.modifyCategory();
+      expect(Operatecategorieservice.modifyCategory).toHaveBeenCalledWith($scope.category);
+    });
 
   });
 
