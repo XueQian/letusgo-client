@@ -75,6 +75,25 @@ describe("cartCtrl", function () {
       expect(result).toEqual(1);
     });
 
+    it('different name, count!=count', function () {
+      var item_ =
+      {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装2', 'price': 11, 'unit': '件'}, count: 1};
+
+      spyOn(CartItemService, 'getTotalMoney');
+
+      var cartItems = [
+        {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 0}
+      ];
+      spyOn(GoodsItemService, 'get').and.returnValue(cartItems);
+
+      createController();
+      $scope.changeCount(item_);
+      var result = $scope.cartItems[0].count;
+
+      expect(result).not.toEqual(1);
+    });
+
+
   });
 
 });

@@ -18,9 +18,11 @@ angular.module('letusgoApp')
 
           cartItem.count = newCartItem.count;
         }
+
       });
 
       GoodsItemService.set('cartItems', $scope.cartItems);
+
       $scope.totalMoney = CartItemService.getTotalMoney($scope.cartItems);
 
       GoodsItemService.set('totalCount', GoodsItemService.getTotalCount($scope.cartItems));
