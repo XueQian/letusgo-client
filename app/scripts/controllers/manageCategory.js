@@ -12,7 +12,6 @@ angular.module('letusgoApp')
       return Operategoodsitemservice.getItemById(id);
     };
 
-
     $scope.deleteCategory = function (index, id) {
 
       if ($scope.getItemById(id)) {
