@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('Operategoodsitemservice', function (localStorageService) {
+  .service('Operategoodsitemservice', function (localStorageService, $http) {
     this.loadGoodsItems = function () {
 
       var itemList = [
@@ -24,6 +24,19 @@ angular.module('letusgoApp')
 
       return itemList;
 
+    };
+
+    this.getGoodsItems = function () {
+      var result = [];
+     $http({method: 'GET', url: '/api/items'}).
+          success(function (data) {
+             result = JSON.parse(data);
+            console.log(result);
+          }).
+          error(function() {
+            console.log('failed');
+          });
+          return result;
     };
     this.getItemById = function (id) {
 
