@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('indexCtrl', function ($scope, GoodsItemService,Operategoodsitemservice) {
-    Operategoodsitemservice.getGoodsItems();
+  .controller('indexCtrl', function ($scope, GoodsItemService) {
     $scope.$emit('parent_indexActive');
 
     $scope.$on('parent_totalCount', function () {

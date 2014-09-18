@@ -1,11 +1,18 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('manageGoodsItemsCtrl', function ($scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice, localStorageService) {
+  .controller('manageGoodsItemsCtrl', function ($http, $scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice, localStorageService) {
 
     $scope.$emit('parent_manageActive');
 
-    $scope.products = Operategoodsitemservice.loadGoodsItems();
+    $http({method: 'GET', url: '/api/items'}).
+      success(function (data) {
+        $scope.products = data;
+      });
+//
+//    $http({method:'POST',url:'/api/items',data:'data'}).success(function (itemList) {
+//
+//      });
 
     $scope.getCategoryName = function (id) {
       return Operatecategorieservice.getcategoryById(id, null).name;

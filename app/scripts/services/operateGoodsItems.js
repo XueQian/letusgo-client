@@ -25,19 +25,25 @@ angular.module('letusgoApp')
       return itemList;
 
     };
-
-    this.getGoodsItems = function () {
-      var result = [];
-     $http({method: 'GET', url: '/api/items'}).
-          success(function (data) {
-             result = JSON.parse(data);
-            console.log(result);
-          }).
-          error(function() {
-            console.log('failed');
-          });
-          return result;
-    };
+//
+//    this.getGoodsItems = function () {
+////      var result = [];
+//      var aa =0;
+//     $http({method: 'GET', url: '/api/items'}).
+//          success(function (data) {
+//           aa= data;
+////         console.log(result);
+//
+//         return aa;
+//
+//       });
+////      .
+////          error(function() {
+////            console.log('failed');
+////          });
+//    console.log(aa);
+//      return aa;
+//    };
     this.getItemById = function (id) {
 
       var result = _.find(this.loadGoodsItems(), function (ItemList) {
