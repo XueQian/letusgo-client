@@ -69,13 +69,13 @@ angular.module('letusgoApp')
       _.forEach(itemList, function (item, index) {
 
         if (item.barcode === newItemList.barcode) {
-          itemList[index] = itemList;
+          itemList[index] = newItemList;
         }
       });
 
       localStorageService.set('itemList', itemList);
 
       return itemList;
-    }
+    };
   });
 
