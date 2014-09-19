@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('Operatecategorieservice', function (localStorageService) {
+  .service('Operatecategorieservice', function ($http,localStorageService) {
     this.loadcategories = function () {
 
       var categoryList = [
@@ -21,6 +21,13 @@ angular.module('letusgoApp')
 
       localStorageService.set('categoryList', categoryList);
       return categoryList;
+    };
+
+    this.getCategories= function(callback) {
+      $http.get('/api/categories').
+        success(function (data) {
+          callback(data);
+        });
     };
 
     this.getcategoryById = function (id, categories) {

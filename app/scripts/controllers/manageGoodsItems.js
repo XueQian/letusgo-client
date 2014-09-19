@@ -24,7 +24,10 @@ angular.module('letusgoApp')
       GoodsItemService.set('itemList', $scope.products);
     };
 
-    $scope.categories = Operatecategorieservice.loadcategories();
+//    $scope.categories = Operatecategorieservice.loadcategories();
+    Operatecategorieservice.getCategories(function (data) {
+      $scope.categories = data;
+    });
 
     $scope.itemList = GoodsItemService.get('itemList');
 
