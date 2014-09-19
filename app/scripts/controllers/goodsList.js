@@ -10,7 +10,7 @@ angular.module('letusgoApp')
     var itemList = Operategoodsitemservice.getGoodsItems(function (data) {
       $scope.products = data;
     })||[];
-    
+
     var cartList = GoodsItemService.get('cartItems');
 
     $scope.getCategoryName = function (id) {

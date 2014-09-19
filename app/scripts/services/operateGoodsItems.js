@@ -2,29 +2,29 @@
 
 angular.module('letusgoApp')
   .service('Operategoodsitemservice', function (localStorageService, $http) {
-    this.loadGoodsItems = function () {
-
-      var itemList = [
-        {barcode: 'ITEM00000', category: '0', name: '服装1', price: 11, unit: '件'},
-        {barcode: 'ITEM00001', category: '0', name: '服装2', price: 11, unit: '件'},
-        {barcode: 'ITEM00002', category: '1', name: '手机１', price: 1111, unit: '件'},
-        {barcode: 'ITEM00003', category: '2', name: '美食１', price: 1100, unit: '件'},
-        {barcode: 'ITEM00004', category: '3', name: '护肤１', price: 101, unit: '件'},
-        {barcode: 'ITEM00005', category: '4', name: '用品１', price: 11, unit: '件'}
-      ];
-
-      var temp = localStorageService.get('itemList');
-
-      if (temp) {
-
-        return temp;
-      }
-
-      localStorageService.set('itemList', itemList);
-
-      return itemList;
-
-    };
+//    this.loadGoodsItems = function () {
+//
+//      var itemList = [
+//        {barcode: 'ITEM00000', category: '0', name: '服装1', price: 11, unit: '件'},
+//        {barcode: 'ITEM00001', category: '0', name: '服装2', price: 11, unit: '件'},
+//        {barcode: 'ITEM00002', category: '1', name: '手机１', price: 1111, unit: '件'},
+//        {barcode: 'ITEM00003', category: '2', name: '美食１', price: 1100, unit: '件'},
+//        {barcode: 'ITEM00004', category: '3', name: '护肤１', price: 101, unit: '件'},
+//        {barcode: 'ITEM00005', category: '4', name: '用品１', price: 11, unit: '件'}
+//      ];
+//
+//      var temp = localStorageService.get('itemList');
+//
+//      if (temp) {
+//
+//        return temp;
+//      }
+//
+//      localStorageService.set('itemList', itemList);
+//
+//      return itemList;
+//
+//    };
 
     this.getGoodsItems = function(callback) {
       $http.get('/api/items').
@@ -35,7 +35,7 @@ angular.module('letusgoApp')
 
     this.getItemById = function (id) {
 
-      var result = _.find(this.loadGoodsItems(), function (ItemList) {
+      var result = _.find(this.getGoodsItems(), function (ItemList) {
 
         return ItemList.category == id;
       });
