@@ -13,10 +13,6 @@ angular.module('letusgoApp')
 //
 //      });
 
-    $scope.getCategoryName = function (id) {
-      return Operatecategorieservice.getcategoryById(id, null).name;
-    };
-
     $scope.deleteCategory = function (index) {
 
       $scope.products.splice(index, 1);

@@ -20,7 +20,7 @@
     </tr>
 
     <tr ng-repeat="product in products">
-      <td>{{getCategoryName(product.category)}}</td>
+      <td>{{product.category.name}}</td>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
       <td>{{product.unit}}</td>
