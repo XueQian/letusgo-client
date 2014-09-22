@@ -31,34 +31,12 @@ angular.module('letusgoApp')
       });
     };
 
-    this.addGoodsItems = function (item, itemList) {
-
-      item.category = item.category.id;
-
-      var hasExistGoodsItems = _.any(itemList, function (newItemList) {
-
-        return item.name === newItemList.name;
-
-      });
-
-      if (!hasExistGoodsItems) {
-
-        var barcode = itemList[itemList.length - 1].barcode.substring(8);
-
-        item.barcode = itemList[itemList.length - 1].barcode.substring(0, 8) + (++barcode);
-
-        itemList.push(item);
-
-      }
-      localStorageService.set('itemList', itemList);
-    };
-
-    this.deleteItem = function(callback) {
-      $http.delete('api/items').
-      success(function (data) {
-        callback(data);
-      });
-    };
+//    this.deleteItem = function(callback) {
+//      $http.delete('api/items').
+//      success(function (data) {
+//        callback(data);
+//      });
+//    };
 
     this.getItemById = function (id) {
 
