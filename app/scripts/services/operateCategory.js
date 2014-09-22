@@ -10,6 +10,28 @@ angular.module('letusgoApp')
         });
     };
 
+    this.addCategory = function (category) {
+
+      this.getCategories(function(data){
+
+        var categoryList = data;
+        var hasExistCategory = _.any(categoryList, function (categoryList) {
+
+          return category.name === categoryList.name;
+        });
+        if (!hasExistCategory) {
+
+          var id =  _.pluck(categoryList, 'id');
+          category.id =  _.max(id)+1;
+
+          categoryList.push(category);
+        }
+
+        $http.post('/api/categories', {categoryList: categoryList});
+
+      });
+    };
+
     this.getcategoryById = function (id, categories) {
       if (categories === null) {
 
@@ -21,25 +43,6 @@ angular.module('letusgoApp')
       }) || {};
     };
 
-    this.addCategory = function (category, categoryList) {
-
-      var hasExistCategory = _.any(categoryList, function (categoryList) {
-
-        return category.name === categoryList.name;
-      });
-
-      if (!hasExistCategory) {
-
-        var id = parseInt(categoryList[categoryList.length - 1].id);
-
-        category.id = id + 1;
-
-        categoryList.push(category);
-
-      }
-
-      localStorageService.set('categoryList', categoryList);
-    };
 
     this.modifyCategory = function (category) {
 

@@ -33,6 +33,13 @@ angular.module('letusgoApp')
         });
     };
 
+    this.deleteItem = function(callback) {
+      $http.delete('api/items').
+      success(function (data) {
+        callback(data);
+      });
+    };
+
     this.getItemById = function (id) {
 
       var result = _.find(this.getGoodsItems(), function (ItemList) {
