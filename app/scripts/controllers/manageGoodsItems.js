@@ -28,7 +28,7 @@ angular.module('letusgoApp')
 
     $scope.addGoodsItems = function () {
 
-      Operategoodsitemservice.addGoodsItems($scope.item, $scope.itemList);
+      Operategoodsitemservice.addItem($scope.item);
     };
 
   });
