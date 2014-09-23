@@ -32,6 +32,10 @@ angular.module('letusgoApp')
       });
     };
 
+    this.deleteCategory = function(id){
+      $http.delete('/api/categories/'+id);
+    };
+
     this.getcategoryById = function (id, categories) {
       if (categories === null) {
 
