@@ -5,18 +5,15 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_goodsListActive');
 
-//    var itemList = GoodsItemService.loadItems();
-
-    var itemList = Operategoodsitemservice.getGoodsItems(function (data) {
+    Operategoodsitemservice.getGoodsItems(function (data) {
       $scope.products = data;
-    })||[];
+    });
 
     var cartList = GoodsItemService.get('cartItems');
 
     $scope.getCategoryName = function (id) {
       return Operatecategorieservice.getcategoryById(id, null).name;
     };
-    GoodsItemService.set('itemList', itemList);
     GoodsItemService.set('totalCount', GoodsItemService.getTotalCount(cartList));
 
     $scope.products = GoodsItemService.get('itemList');
