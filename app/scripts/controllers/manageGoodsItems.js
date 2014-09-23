@@ -9,15 +9,10 @@ angular.module('letusgoApp')
         $scope.products = data;
       });
 
-//    $http({method:'POST',url:'/api/items',data:'data'}).success(function (itemList) {
-//
-//      });
+    $scope.deleteCategory = function(index){
 
-    $scope.deleteCategory = function (index) {
+      Operategoodsitemservice.deleteGoodsItems(index);
 
-      $scope.products.splice(index, 1);
-
-      GoodsItemService.set('itemList', $scope.products);
     };
 
     Operatecategorieservice.getCategories(function (data) {

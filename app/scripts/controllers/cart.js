@@ -25,7 +25,7 @@ angular.module('letusgoApp')
 //
 //      GoodsItemService.set('cartItems', $scope.cartItems);
       GoodsItemService.updateCart(newCartItem,function(data){
-        
+
         $scope.cartItems=data;
 
       });
