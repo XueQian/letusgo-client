@@ -15,7 +15,7 @@ angular.module('letusgoApp')
 
     $scope.remove = function () {
 
-      CartItemService.remove('cartItems');
+      CartItemService.remove();
 
       GoodsItemService.set('totalCount', 0);
 

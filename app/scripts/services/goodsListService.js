@@ -41,26 +41,6 @@ angular.module('letusgoApp')
         }) || 0;
       };
 
-      this.addToCartList = function (item, cartItems) {
-
-        var hasExistItem = _.any(cartItems, function (cartItem) {
-          return item.name === cartItem.item.name;
-        });
-
-        if (hasExistItem) {
-
-          var existCartItem = _.find(cartItems, function (cartItem) {
-            return item.name === cartItem.item.name;
-          });
-          existCartItem.count++;
-
-        } else {
-          cartItems.push({item: item, count: 1});
-        }
-
-        return cartItems;
-      };
-
       this.get = function (key) {
         return localStorageService.get(key);
       };

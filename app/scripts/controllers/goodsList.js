@@ -9,21 +9,21 @@ angular.module('letusgoApp')
       $scope.products = data;
     });
 
-    var cartList = GoodsItemService.get('cartItems');
+//    var cartList = GoodsItemService.get('cartItems');
 
-    $scope.getCategoryName = function (id) {
-      return Operatecategorieservice.getcategoryById(id, null).name;
-    };
-    GoodsItemService.set('totalCount', GoodsItemService.getTotalCount(cartList));
+//    $scope.getCategoryName = function (id) {
+//      return Operatecategorieservice.getcategoryById(id, null).name;
+//    };
+    GoodsItemService.set('totalCount', GoodsItemService.getTotalCount($scope.products));
 
-    $scope.products = GoodsItemService.get('itemList');
+//    $scope.products = GoodsItemService.get('itemList');
     $scope.$emit('parent_totalCount');
 
     $scope.addToCart = function (item) {
 
-      cartList = GoodsItemService.addToCart(item);
-
-      GoodsItemService.set('totalCount', GoodsItemService.getTotalCount(cartList));
+      GoodsItemService.addToCart(item);
+//
+//      GoodsItemService.set('totalCount', GoodsItemService.getTotalCount($scope.products));
 
       $scope.$emit('parent_totalCount');
     };

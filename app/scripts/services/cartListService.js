@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('CartItemService', function (localStorageService) {
+  .service('CartItemService', function ($http) {
     this.getTotalMoney = function (cartItems) {
 
       var totalMoney = 0;
@@ -14,9 +14,9 @@ angular.module('letusgoApp')
       return totalMoney;
     };
 
-    this.remove = function (key) {
+    this.remove = function () {
 
-      return  localStorageService.remove(key);
+      $http.delete('/api/cartItems');
     };
 
   });
