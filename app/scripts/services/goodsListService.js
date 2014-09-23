@@ -35,6 +35,21 @@ angular.module('letusgoApp')
       });
     };
 
+    this.updateCart = function (newCartItem,callback) {
+      this.getCartItems(function(data){
+        var cartItems = data;
+        _(cartItems).forEach(function (cartItem) {
+
+          if (cartItem.item.name === newCartItem.item.name) {
+
+            cartItem.count = newCartItem.count;
+          }
+        });
+        callback(cartItems);
+      });
+
+    };
+
       this.getTotalCount = function (cartLists) {
         return _.reduce(_.pluck(cartLists, 'count'), function (count1, count2) {
           return count1 + count2;

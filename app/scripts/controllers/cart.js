@@ -14,16 +14,21 @@ angular.module('letusgoApp')
     $scope.totalMoney = CartItemService.getTotalMoney($scope.cartItems);
 
     $scope.changeCount = function (newCartItem) {
-      _($scope.cartItems).forEach(function (cartItem) {
-
-        if (cartItem.item.name === newCartItem.item.name) {
-
-          cartItem.count = newCartItem.count;
-        }
+//      _($scope.cartItems).forEach(function (cartItem) {
+//
+//        if (cartItem.item.name === newCartItem.item.name) {
+//
+//          cartItem.count = newCartItem.count;
+//        }
+//
+//      });
+//
+//      GoodsItemService.set('cartItems', $scope.cartItems);
+      GoodsItemService.updateCart(newCartItem,function(data){
+        
+        $scope.cartItems=data;
 
       });
-
-      GoodsItemService.set('cartItems', $scope.cartItems);
 
       $scope.totalMoney = CartItemService.getTotalMoney($scope.cartItems);
 
