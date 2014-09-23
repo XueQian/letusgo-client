@@ -19,15 +19,10 @@ angular.module('letusgoApp')
     $scope.products = GoodsItemService.get('itemList');
     $scope.$emit('parent_totalCount');
 
-    $scope.addToCart = function (productItem) {
+    $scope.addToCart = function (item) {
 
-      if (cartList === null) {
-        cartList = [];
-      }
+      cartList = GoodsItemService.addToCart(item);
 
-      cartList = GoodsItemService.addToCartList(productItem, cartList);
-
-      GoodsItemService.set('cartItems', cartList);
       GoodsItemService.set('totalCount', GoodsItemService.getTotalCount(cartList));
 
       $scope.$emit('parent_totalCount');
