@@ -21,8 +21,8 @@ angular.module('letusgoApp')
         });
         if (!hasExistItem) {
 
-          var barcode =  _.pluck(itemList, 'barcode');
-          item.barcode =  _.max(barcode)+1;
+          var id =  _.pluck(itemList, 'id');
+          item.id =  _.max(id)+1;
           itemList.push(item);
         }
 
@@ -31,8 +31,8 @@ angular.module('letusgoApp')
       });
     };
 
-    this.deleteGoodsItems = function(barcode){
-      $http.delete('/api/items/'+barcode);
+    this.deleteGoodsItems = function(id){
+      $http.delete('/api/items/'+id);
     };
 
     this.getItemById = function (id) {
@@ -46,10 +46,10 @@ angular.module('letusgoApp')
     };
 
 
-    this.getGoodsItemsByBarcode = function (barcode) {
+    this.getGoodsItemsByid = function (id) {
       var itemList = localStorageService.get('itemList');
 
-      return _.find(itemList, {barcode: barcode}) || {};
+      return _.find(itemList, {id: id}) || {};
     };
 
     this.modifyGoods = function (newItemList) {
@@ -57,7 +57,7 @@ angular.module('letusgoApp')
 
       _.forEach(itemList, function (item, index) {
 
-        if (item.barcode === newItemList.barcode) {
+        if (item.id === newItemList.id) {
           itemList[index] = newItemList;
         }
       });
