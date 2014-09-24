@@ -10,7 +10,7 @@ angular.module('letusgoApp')
         });
     };
 
-    this.addItem = function (item) {
+    this.addItem = function (item,callback) {
 
       this.getGoodsItems(function(data){
 
@@ -26,7 +26,10 @@ angular.module('letusgoApp')
           itemList.push(item);
         }
 
-        $http.post('/api/items', {itemList: itemList});
+        $http.post('/api/items', {itemList: itemList})
+          .success(function(data){
+            callback(data);
+          });
 
       });
     };
