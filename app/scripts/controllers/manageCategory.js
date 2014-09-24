@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('manageCategoryCtrl', function ($scope, Operatecategorieservice, GoodsItemService, Operategoodsitemservice) {
+  .controller('manageCategoryCtrl', function ($scope, $location, Operatecategorieservice, GoodsItemService, Operategoodsitemservice) {
 
     $scope.$emit('parent_manageActive');
 
@@ -25,7 +25,10 @@ angular.module('letusgoApp')
 
     $scope.addCategory = function () {
 
-      Operatecategorieservice.addCategory($scope.category);
+      Operatecategorieservice.addCategory($scope.category ,function(data){
+        $scope.categories = data;
+        $location.path('/manageCategory');
+      });
 
     };
 

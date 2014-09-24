@@ -10,11 +10,11 @@ angular.module('letusgoApp')
         });
     };
 
-    this.addCategory = function (category) {
+    this.addCategory = function (category, callback) {
 
       this.getCategories(function(data){
 
-        var categoryList = data||[];
+        var categoryList = data||[0];
         var hasExistCategory = _.any(categoryList, function (categoryList) {
 
           return category.name === categoryList.name;
@@ -27,7 +27,10 @@ angular.module('letusgoApp')
           categoryList.push(category);
         }
 
-        $http.post('/api/categories', {categoryList: categoryList});
+        $http.post('/api/categories', {categoryList: categoryList})
+          .success(function(data){
+            callback(data);
+          });
 
       });
     };

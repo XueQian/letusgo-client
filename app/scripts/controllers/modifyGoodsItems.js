@@ -5,20 +5,36 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_manageGoodsActive');
 
-    $scope.itemList = Operategoodsitemservice.getGoodsItemsByid($routeParams.id);
+//    $scope.itemList = Operategoodsitemservice.getGoodsItemsByid($routeParams.id);
 
-    $scope.categories = Operatecategorieservice.loadcategories();
-
-    $scope.category = _.find($scope.categories, function (category) {
-
-      return category.id == $scope.itemList.category;
+    Operategoodsitemservice.getProductInfoById($routeParams.id, function(data) {
+      $scope.itemList = data;
     });
+    console.log($scope.itemList);
+    Operatecategorieservice.getCategories(function (data) {
+      $scope.categories = data;
+    });
+    console.log($scope.categories);
 
-    $scope.modifyGoods = function () {
+//    $scope.categories = Operatecategorieservice.loadcategories();
+//
+//    $scope.category = _.find($scope.categories, function (category) {
+//
+//      return category.id == $scope.itemList.category;
+//    });
 
-      $scope.itemList.category = $scope.category.id;
-      Operategoodsitemservice.modifyGoods($scope.itemList);
-    };
+//    $scope.modifyGoods = function () {
+//
+////      $scope.itemList.category = $scope.category.id;
+//      Operategoodsitemservice.modifyGoods($scope.itemList);
+//    };
+//    Operategoodsitemservice.modifyGoods($scope.itemList,function (data) {
+//      $scope.modifyGoods = data;
+//      console.log($scope.modifyGoods);
+//    });
+
+
+
 
   });
 

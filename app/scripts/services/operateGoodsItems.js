@@ -14,7 +14,7 @@ angular.module('letusgoApp')
 
       this.getGoodsItems(function(data){
 
-        var itemList = data||[];
+        var itemList = data||[0];
         var hasExistItem = _.any(itemList, function (itemList) {
 
           return item.name === itemList.name;
@@ -52,19 +52,33 @@ angular.module('letusgoApp')
       return _.find(itemList, {id: id}) || {};
     };
 
-    this.modifyGoods = function (newItemList) {
-      var itemList = localStorageService.get('itemList');
+//    this.modifyGoods = function (newItemList) {
+//      var itemList = localStorageService.get('itemList');
+//
+//      _.forEach(itemList, function (item, index) {
+//
+//        if (item.id === newItemList.id) {
+//          itemList[index] = newItemList;
+//        }
+//      });
+//
+//      localStorageService.set('itemList', itemList);
+//
+//      return itemList;
+//    };
+    this.modifyGoods = function(newItem,callback){
+      var id = newItem.id;
 
-      _.forEach(itemList, function (item, index) {
-
-        if (item.id === newItemList.id) {
-          itemList[index] = newItemList;
-        }
-      });
-
-      localStorageService.set('itemList', itemList);
-
-      return itemList;
+      $http.put('/api/items/'+id , {'newItem': newItem})
+      .
+        success(function (data) {
+          callback(data);
+          console.log(data);
+        });
     };
+
+
+
+
   });
 
