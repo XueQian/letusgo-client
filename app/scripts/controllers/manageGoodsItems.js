@@ -9,7 +9,7 @@ angular.module('letusgoApp')
         $scope.products = data;
       });
 
-    $scope.deleteCategory = function(index){
+    $scope.deleteItems = function(index){
 
       Operategoodsitemservice.deleteGoodsItems(index);
 
