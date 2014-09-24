@@ -14,7 +14,7 @@ angular.module('letusgoApp')
 
       this.getCategories(function(data){
 
-        var categoryList = data;
+        var categoryList = data||[];
         var hasExistCategory = _.any(categoryList, function (categoryList) {
 
           return category.name === categoryList.name;

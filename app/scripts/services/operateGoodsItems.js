@@ -14,7 +14,7 @@ angular.module('letusgoApp')
 
       this.getGoodsItems(function(data){
 
-        var itemList = data;
+        var itemList = data||[];
         var hasExistItem = _.any(itemList, function (itemList) {
 
           return item.name === itemList.name;

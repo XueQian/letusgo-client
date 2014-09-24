@@ -13,6 +13,10 @@ angular.module('letusgoApp')
 
       Operategoodsitemservice.deleteGoodsItems(index);
 
+      Operategoodsitemservice.getGoodsItems(function (data) {
+        $scope.products = data;
+      });
+
     };
 
     Operatecategorieservice.getCategories(function (data) {

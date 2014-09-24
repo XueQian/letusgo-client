@@ -16,7 +16,11 @@ angular.module('letusgoApp')
 
     $scope.deleteCategory = function (index) {
 
-        Operatecategorieservice.deleteCategory(index);
+      Operatecategorieservice.deleteCategory(index);
+
+      Operatecategorieservice.getCategories(function (data) {
+        $scope.categories = data;
+      });
     };
 
     $scope.addCategory = function () {
