@@ -5,15 +5,15 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_manageGoodsActive');
 
-    $scope.category = Operatecategorieservice.getcategoryById($routeParams.id, null);
+      Operatecategorieservice.getcategoryById($routeParams.id,function(data){
+        $scope.category = data;
+        console.log($scope.category);
+      });
 
-    Operatecategorieservice.getCategories(function (data) {
-      $scope.categories = data;
-    });
-
-    $scope.modifyCategory = function () {
-
-      return Operatecategorieservice.modifyCategory($scope.category);
+    $scope.modifyCategory = function (index) {
+      Operatecategorieservice.modifyCategory(index,$scope.category,function(data){
+        $scope.categories = data;
+      });
     };
 
   });
