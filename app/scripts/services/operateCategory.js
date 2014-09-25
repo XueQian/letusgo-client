@@ -39,23 +39,23 @@ angular.module('letusgoApp')
       $http.delete('/api/categories/' + id);
     };
 
-    this.getcategoryById = function (id,callback) {
-        this.getCategories(function (data) {
+    this.getcategoryById = function (id, callback) {
+      this.getCategories(function (data) {
 
-         var categories = data || [0];
+        var categories = data || [0];
 
-          var result = _.find(categories,{id:parseInt(id)});
-          callback(result);
-        });
+        var result = _.find(categories, {id: parseInt(id)});
+        callback(result);
+      });
 
     };
 
-    this.modifyCategory = function (id,category,callback) {
+    this.modifyCategory = function (id, category, callback) {
 
-        $http.put('/api/categories/'+id, {category: category})
-          .success(function (data) {
-            callback(data);
-          });
+      $http.put('/api/categories/' + id, {category: category})
+        .success(function (data) {
+          callback(data);
+        });
 
     };
   });

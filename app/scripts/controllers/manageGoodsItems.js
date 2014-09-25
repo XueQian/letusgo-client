@@ -5,11 +5,11 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_manageActive');
 
-      Operategoodsitemservice.getGoodsItems(function (data) {
-        $scope.products = data;
-      });
+    Operategoodsitemservice.getGoodsItems(function (data) {
+      $scope.products = data;
+    });
 
-    $scope.deleteItems = function(index){
+    $scope.deleteItems = function (index) {
 
       Operategoodsitemservice.deleteGoodsItems(index);
 
@@ -25,7 +25,7 @@ angular.module('letusgoApp')
 
     $scope.addGoodsItems = function () {
 
-      Operategoodsitemservice.addItem($scope.item,function(data){
+      Operategoodsitemservice.addItem($scope.item, function (data) {
         $scope.products = data;
         $location.path('/manageGoodsItems');
 

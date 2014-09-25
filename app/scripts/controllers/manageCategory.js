@@ -25,7 +25,7 @@ angular.module('letusgoApp')
 
     $scope.addCategory = function () {
 
-      Operatecategorieservice.addCategory($scope.category ,function(data){
+      Operatecategorieservice.addCategory($scope.category, function (data) {
         $scope.categories = data;
         $location.path('/manageCategory');
       });

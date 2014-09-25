@@ -14,15 +14,15 @@ angular.module('letusgoApp')
 
     $scope.changeCount = function (newCartItem) {
 
-      GoodsItemService.changeCartItemCount(newCartItem,function(data){
+      GoodsItemService.changeCartItemCount(newCartItem, function (data) {
 
         $scope.cartItems = data;
         $scope.totalMoney = CartItemService.getTotalMoney($scope.cartItems);
 
       });
 
-      GoodsItemService.getTotalCount($scope.cartItems,function(data){
-        GoodsItemService.set('totalCount',data);
+      GoodsItemService.getTotalCount($scope.cartItems, function (data) {
+        GoodsItemService.set('totalCount', data);
       });
 
       $scope.$emit('parent_totalCount');

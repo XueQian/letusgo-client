@@ -5,7 +5,7 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_manageGoodsActive');
 
-    Operategoodsitemservice.getItemById($routeParams.id, function(data) {
+    Operategoodsitemservice.getItemById($routeParams.id, function (data) {
       $scope.item = data;
     });
 
@@ -14,7 +14,7 @@ angular.module('letusgoApp')
     });
 
     $scope.modifyItem = function (index) {
-      Operategoodsitemservice.modifyItem(index,$scope.item,function(){
+      Operategoodsitemservice.modifyItem(index, $scope.item, function () {
       });
     };
 
