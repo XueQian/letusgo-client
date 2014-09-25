@@ -43,17 +43,15 @@ angular.module('letusgoApp')
         this.getCategories(function (data) {
 
          var categories = data || [0];
-          var result = _.find(categories, function (category) {
 
-            return category.id == id;
-          }) || {};
+          var result = _.find(categories,{id:parseInt(id)});
           callback(result);
         });
 
     };
 
     this.modifyCategory = function (id,category,callback) {
-        console.log('test:' + id);
+
         $http.put('/api/categories/'+id, {category: category})
           .success(function (data) {
             callback(data);
