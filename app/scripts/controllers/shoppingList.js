@@ -7,11 +7,10 @@ angular.module('letusgoApp')
 
     GoodsItemService.getCartItems(function (data) {
       $scope.orderItems = data;
+      $scope.totalMoney = CartItemService.getTotalMoney($scope.orderItems);
     });
 
     $scope.$emit('parent_totalCount');
-
-    $scope.totalMoney = CartItemService.getTotalMoney($scope.orderItems);
 
     $scope.remove = function () {
 
