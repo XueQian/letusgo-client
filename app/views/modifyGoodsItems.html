@@ -34,16 +34,16 @@
       <!--</select>-->
     </div>
     <div class="col-md-2 text-center">
-      <input type="text" class="form-control" ng-model="itemList.name">
+      <input type="text" class="form-control" ng-model="item.name">
     </div>
     <div class="col-md-2 text-center">
-      <input type="text" class="form-control" ng-model="itemList.price">
+      <input type="text" class="form-control" ng-model="item.price">
     </div>
     <div class="col-md-2 text-center">
-      <input type="text" class="form-control" ng-model="itemList.unit">
+      <input type="text" class="form-control" ng-model="item.unit">
     </div>
     <div class="col-md-2 text-center">
-      <a class="btn btn-primary" role="button" ng-click="modifyGoods()" href="#manageGoodsItems">确定</a>
+      <a class="btn btn-primary" role="button" ng-click="modifyItem(item.id)" href="#manageGoodsItems">确定</a>
       <a class="btn btn-default" role="button" href="#manageGoodsItems">取消</a>
     </div>
   </div>

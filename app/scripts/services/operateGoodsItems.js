@@ -38,22 +38,43 @@ angular.module('letusgoApp')
       $http.delete('/api/items/'+id);
     };
 
-    this.getItemById = function (id) {
+    this.getItemById = function (id,callback) {
+      this.getGoodsItems(function (data) {
 
-      var result = _.find(this.getGoodsItems(), function (ItemList) {
+        var items = data || [0];
 
-        return ItemList.category == id;
+        var result = _.find(items, function (item) {
+
+          return item.id == id;
+        }) || {};
+        callback(result);
       });
-
-      return result ? false : true;
     };
 
-
-    this.getGoodsItemsByid = function (id) {
-      var itemList = localStorageService.get('itemList');
-
-      return _.find(itemList, {id: id}) || {};
+    this.modifyItem = function (id,item,callback) {
+      console.log('test:' + id);
+      $http.put('/api/items/'+id, {item: item})
+        .success(function (data) {
+          callback(data);
+        });
     };
+
+//    this.getItemById = function (id) {
+//
+//      var result = _.find(this.getGoodsItems(), function (ItemList) {
+//
+//        return ItemList.category == id;
+//      });
+//
+//      return result ? false : true;
+//    };
+
+
+//    this.getGoodsItemsByid = function (id) {
+//      var itemList = localStorageService.get('itemList');
+//
+//      return _.find(itemList, {id: id}) || {};
+//    };
 
 //    this.modifyGoods = function (newItemList) {
 //      var itemList = localStorageService.get('itemList');
@@ -69,16 +90,16 @@ angular.module('letusgoApp')
 //
 //      return itemList;
 //    };
-    this.modifyGoods = function(newItem,callback){
-      var id = newItem.id;
-
-      $http.put('/api/items/'+id , {'newItem': newItem})
-      .
-        success(function (data) {
-          callback(data);
-          console.log(data);
-        });
-    };
+//    this.modifyGoods = function(newItem,callback){
+//      var id = newItem.id;
+//
+//      $http.put('/api/items/'+id , {'newItem': newItem})
+//      .
+//        success(function (data) {
+//          callback(data);
+//          console.log(data);
+//        });
+//    };
 
 
 
