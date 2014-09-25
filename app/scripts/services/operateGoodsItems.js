@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('Operategoodsitemservice', function (localStorageService, $http) {
+  .service('Operategoodsitemservice', function ($http) {
 
     this.getGoodsItems = function(callback) {
       $http.get('/api/items').
@@ -52,57 +52,12 @@ angular.module('letusgoApp')
     };
 
     this.modifyItem = function (id,item,callback) {
-      console.log('test:' + id);
+
       $http.put('/api/items/'+id, {item: item})
         .success(function (data) {
           callback(data);
         });
     };
-
-//    this.getItemById = function (id) {
-//
-//      var result = _.find(this.getGoodsItems(), function (ItemList) {
-//
-//        return ItemList.category == id;
-//      });
-//
-//      return result ? false : true;
-//    };
-
-
-//    this.getGoodsItemsByid = function (id) {
-//      var itemList = localStorageService.get('itemList');
-//
-//      return _.find(itemList, {id: id}) || {};
-//    };
-
-//    this.modifyGoods = function (newItemList) {
-//      var itemList = localStorageService.get('itemList');
-//
-//      _.forEach(itemList, function (item, index) {
-//
-//        if (item.id === newItemList.id) {
-//          itemList[index] = newItemList;
-//        }
-//      });
-//
-//      localStorageService.set('itemList', itemList);
-//
-//      return itemList;
-//    };
-//    this.modifyGoods = function(newItem,callback){
-//      var id = newItem.id;
-//
-//      $http.put('/api/items/'+id , {'newItem': newItem})
-//      .
-//        success(function (data) {
-//          callback(data);
-//          console.log(data);
-//        });
-//    };
-
-
-
 
   });
 

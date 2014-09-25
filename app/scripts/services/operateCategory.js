@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .service('Operatecategorieservice', function ($http, localStorageService) {
+  .service('Operatecategorieservice', function ($http) {
 
     this.getCategories = function (callback) {
       $http.get('/api/categories').

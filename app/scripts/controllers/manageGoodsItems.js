@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('manageGoodsItemsCtrl', function ($http,$location, $scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice) {
+  .controller('manageGoodsItemsCtrl', function ($http,$location, $scope, Operatecategorieservice, Operategoodsitemservice) {
 
     $scope.$emit('parent_manageActive');
 
@@ -22,8 +22,6 @@ angular.module('letusgoApp')
     Operatecategorieservice.getCategories(function (data) {
       $scope.categories = data;
     });
-
-    $scope.itemList = GoodsItemService.get('itemList');
 
     $scope.addGoodsItems = function () {
 

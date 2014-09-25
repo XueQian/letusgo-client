@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('modifyGoodsItemsCtrl', function ($scope, GoodsItemService, Operatecategorieservice, Operategoodsitemservice, $routeParams) {
+  .controller('modifyGoodsItemsCtrl', function ($scope, Operatecategorieservice, Operategoodsitemservice, $routeParams) {
 
     $scope.$emit('parent_manageGoodsActive');
 
@@ -13,31 +13,10 @@ angular.module('letusgoApp')
       $scope.categories = data;
     });
 
-
     $scope.modifyItem = function (index) {
       Operategoodsitemservice.modifyItem(index,$scope.item,function(){
       });
     };
-
-//    $scope.categories = Operatecategorieservice.loadcategories();
-//
-//    $scope.category = _.find($scope.categories, function (category) {
-//
-//      return category.id == $scope.itemList.category;
-//    });
-
-//    $scope.modifyGoods = function () {
-//
-////      $scope.itemList.category = $scope.category.id;
-//      Operategoodsitemservice.modifyGoods($scope.itemList);
-//    };
-//    Operategoodsitemservice.modifyGoods($scope.itemList,function (data) {
-//      $scope.modifyGoods = data;
-//      console.log($scope.modifyGoods);
-//    });
-
-
-
 
   });
 
