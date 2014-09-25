@@ -32,7 +32,9 @@ angular.module('letusgoApp')
 
       $scope.totalMoney = CartItemService.getTotalMoney($scope.cartItems);
 
-      GoodsItemService.set('totalCount', GoodsItemService.getTotalCount($scope.cartItems));
+      GoodsItemService.getTotalCount($scope.products,function(data){
+        GoodsItemService.set('totalCount',data);
+      });
 
       $scope.$emit('parent_totalCount');
     };

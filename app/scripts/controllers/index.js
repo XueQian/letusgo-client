@@ -6,8 +6,14 @@ angular.module('letusgoApp')
 
     $scope.$on('parent_totalCount', function () {
 
-      var cartList = GoodsItemService.get('cartItems');
-      $scope.totalCount = GoodsItemService.getTotalCount(cartList);
+      GoodsItemService.getCartItems(function (data) {
+
+        var cartItems = data;
+        GoodsItemService.getTotalCount(cartItems,function(data){
+          $scope.totalCount=data;
+        });
+      });
+
     });
 
     $scope.$on('parent_totalCount===0', function () {
