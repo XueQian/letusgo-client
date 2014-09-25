@@ -12,7 +12,7 @@ angular.module('letusgoApp')
         });
     };
 
-    this.addToCart = function (item) {
+    this.addToCart = function (item,callback) {
       this.getCartItems(function (data) {
 
         var cartItems = data;
@@ -30,8 +30,10 @@ angular.module('letusgoApp')
         } else {
           cartItems.push({item: item, count: 1});
         }
-        $http.post('/api/cartItems', {cartItems: cartItems});
-
+        $http.post('/api/cartItems', {cartItems: cartItems})
+          .success(function(){
+            callback();
+          });
       });
     };
 
