@@ -43,10 +43,7 @@ angular.module('letusgoApp')
 
         var items = data || [0];
 
-        var result = _.find(items, function (item) {
-
-          return item.id == id;
-        }) || {};
+        var result = _.find(items,{id:parseInt(id)});
         callback(result);
       });
     };
