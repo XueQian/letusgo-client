@@ -16,7 +16,7 @@ angular.module('letusgoApp')
 
     this.remove = function () {
 
-      $http.delete('/api/cartItems');
+      $http.post('/api/payment');
     };
 
   });
