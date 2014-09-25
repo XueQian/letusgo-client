@@ -50,10 +50,18 @@ angular.module('letusgoApp')
 
     };
 
+      this.changeCartItemCount = function (cartItem,callback) {
+        var id = cartItem.item.id;
+        $http.put('/api/cartItems/'+id, {cartItem: cartItem})
+          .success(function (data) {
+            callback(data);
+          });
+      };
+
       this.getTotalCount = function (cartLists,callback) {
         var result = _.reduce(_.pluck(cartLists, 'count'), function (count1, count2) {
           return count1 + count2;
-        }) || 0;
+        });
         callback(result);
       };
 
