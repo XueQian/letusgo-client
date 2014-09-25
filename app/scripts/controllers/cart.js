@@ -19,13 +19,6 @@ angular.module('letusgoApp')
 
           $scope.cartItems = data;
 
-
-      });
-
-      GoodsItemService.updateCart(newCartItem,function(data){
-
-        $scope.cartItems=data;
-
       });
 
       $scope.totalMoney = CartItemService.getTotalMoney($scope.cartItems);
