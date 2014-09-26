@@ -111,14 +111,6 @@ describe("manageCategoryCtrl", function () {
 
   });
 
-//  $scope.addCategory = function () {
-//
-//    Operatecategorieservice.addCategory($scope.category, function (data) {
-//      $scope.categories = data;
-//      $location.path('/manageCategory');
-//    });
-//
-//  };
   describe('when addCategory', function () {
 
     var categories,category;
@@ -144,13 +136,7 @@ describe("manageCategoryCtrl", function () {
       });
 
     });
-
-
-
-
   });
-
-
 
 });
 
