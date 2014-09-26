@@ -66,39 +66,39 @@ describe("goodsListCtrl", function () {
     });
   });
 
-    describe('when addToCart', function () {
-      var item,items;
+  describe('when addToCart', function () {
+    var item, items;
 
-      beforeEach(function () {
-        item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
-        items = [
-          {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}
-        ];
+    beforeEach(function () {
+      item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
+      items = [
+        {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}
+      ];
+    });
+
+    it('should return items to cart', function () {
+
+      spyOn(GoodsItemService, 'addToCart').and.callFake(function (item, callback) {
+        callback();
       });
+      spyOn(GoodsItemService, 'getTotalCount').and.callFake(function (items, callback) {
+        callback(items);
+      });
+      spyOn(GoodsItemService, 'set');
 
-      it('should return items to cart', function () {
+      createController();
+      $scope.addToCart(item);
 
-        spyOn(GoodsItemService,'addToCart').and.callFake(function(item,callback){
-          callback();
+      GoodsItemService.addToCart(item, function () {
+        GoodsItemService.addToCart(item, function (data) {
+          expect(GoodsItemService.set).toHaveBeenCalled();
         });
-        spyOn(GoodsItemService,'getTotalCount').and.callFake(function(items,callback){
-          callback(items);
-        });
-        spyOn(GoodsItemService,'set');
-
-        createController();
-        $scope.addToCart(item);
-
-        GoodsItemService.addToCart(item,function(){
-          GoodsItemService.addToCart(item,function(data) {
-            expect(GoodsItemService.set).toHaveBeenCalled();
-          });
-        });
-
       });
 
     });
 
   });
+
+});
 
 

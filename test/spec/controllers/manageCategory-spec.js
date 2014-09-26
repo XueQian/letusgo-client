@@ -2,7 +2,7 @@
 
 describe("manageCategoryCtrl", function () {
 
-  var  createController, $scope, $location, Operatecategorieservice, Operategoodsitemservice;
+  var createController, $scope, $location, Operatecategorieservice, Operategoodsitemservice;
 
   beforeEach(function () {
 
@@ -67,7 +67,7 @@ describe("manageCategoryCtrl", function () {
     it('should call getItemById in Operategoodsitemservice', function () {
 
       var id = 0;
-      spyOn(Operategoodsitemservice,'getItemById');
+      spyOn(Operategoodsitemservice, 'getItemById');
 
       createController();
       $scope.getItemById(id);
@@ -82,7 +82,7 @@ describe("manageCategoryCtrl", function () {
     it('should call deleteCategory in Operatecategorieservice', function () {
 
       var index = 0;
-      spyOn(Operatecategorieservice,'deleteCategory');
+      spyOn(Operatecategorieservice, 'deleteCategory');
 
       createController();
       $scope.deleteCategory(index);
@@ -90,7 +90,7 @@ describe("manageCategoryCtrl", function () {
 
     });
 
-    it('should get categories',function() {
+    it('should get categories', function () {
 
       var categories = [
         {id: 0, name: '服装鞋包'}
@@ -113,7 +113,7 @@ describe("manageCategoryCtrl", function () {
 
   describe('when addCategory', function () {
 
-    var categories,category;
+    var categories, category;
 
     beforeEach(function () {
       categories = [
@@ -124,14 +124,14 @@ describe("manageCategoryCtrl", function () {
 
     it('should return categories after add', function () {
 
-      spyOn(Operatecategorieservice, 'addCategory').and.callFake(function (category,callback) {
+      spyOn(Operatecategorieservice, 'addCategory').and.callFake(function (category, callback) {
         callback(categories);
       });
 
       createController();
       $scope.addCategory();
 
-      Operatecategorieservice.addCategory(category,function (data) {
+      Operatecategorieservice.addCategory(category, function (data) {
         expect($scope.categories).toEqual(data);
       });
 

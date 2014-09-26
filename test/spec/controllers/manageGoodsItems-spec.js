@@ -2,7 +2,7 @@
 
 describe("manageGoodsItemsCtrl", function () {
 
-  var createController,$location, $scope, Operatecategorieservice, Operategoodsitemservice;
+  var createController, $location, $scope, Operatecategorieservice, Operategoodsitemservice;
 
   beforeEach(function () {
 
@@ -69,7 +69,7 @@ describe("manageGoodsItemsCtrl", function () {
     it('should call deleteGoodsItems in Operategoodsitemservice', function () {
 
       var index = 0;
-      spyOn(Operategoodsitemservice,'deleteGoodsItems');
+      spyOn(Operategoodsitemservice, 'deleteGoodsItems');
 
       createController();
       $scope.deleteItems(index);
@@ -77,7 +77,7 @@ describe("manageGoodsItemsCtrl", function () {
 
     });
 
-    it('should get goodsItems',function() {
+    it('should get goodsItems', function () {
 
       var items = [
         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
@@ -126,25 +126,25 @@ describe("manageGoodsItemsCtrl", function () {
 
   describe('when addGoodsItems', function () {
 
-    var items,item;
+    var items, item;
 
     beforeEach(function () {
       items = [
         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
       ];
-      item={barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
+      item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
     });
 
     it('should return items after add', function () {
 
-      spyOn(Operategoodsitemservice, 'addItem').and.callFake(function (item,callback) {
+      spyOn(Operategoodsitemservice, 'addItem').and.callFake(function (item, callback) {
         callback(items);
       });
 
       createController();
       $scope.addGoodsItems();
 
-      Operategoodsitemservice.addItem(item,function (data) {
+      Operategoodsitemservice.addItem(item, function (data) {
         expect($scope.products).toEqual(data);
       });
 

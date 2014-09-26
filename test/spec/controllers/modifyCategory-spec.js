@@ -38,17 +38,17 @@ describe("modifyCategoryCtrl", function () {
 
   describe('when getcategoryById', function () {
 
-    it('should return category by id ',function(){
+    it('should return category by id ', function () {
       var id = 0;
       var category = {id: 0, name: '服装鞋包'};
 
-      spyOn(Operatecategorieservice,'getcategoryById').and.callFake(function (id,callback) {
+      spyOn(Operatecategorieservice, 'getcategoryById').and.callFake(function (id, callback) {
         callback(category);
       });
 
       createController();
 
-      Operatecategorieservice.getcategoryById(id,function (data) {
+      Operatecategorieservice.getcategoryById(id, function (data) {
         expect($scope.category).toEqual(data);
       });
 
@@ -58,19 +58,21 @@ describe("modifyCategoryCtrl", function () {
 
   describe('when modifyCategory', function () {
 
-    it('should return categories after modify',function(){
+    it('should return categories after modify', function () {
       var index = 0;
       var category = {id: 0, name: '服装鞋包'};
-      var categories = [{id: 0, name: '服装鞋包'}];
+      var categories = [
+        {id: 0, name: '服装鞋包'}
+      ];
 
-      spyOn(Operatecategorieservice,'modifyCategory').and.callFake(function (index,category,callback) {
+      spyOn(Operatecategorieservice, 'modifyCategory').and.callFake(function (index, category, callback) {
         callback(categories);
       });
 
       createController();
       $scope.modifyCategory(index);
 
-      Operatecategorieservice.modifyCategory(index,category,function (data) {
+      Operatecategorieservice.modifyCategory(index, category, function (data) {
         expect($scope.categories).toEqual(data);
       });
 

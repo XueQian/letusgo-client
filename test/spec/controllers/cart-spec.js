@@ -69,35 +69,35 @@ describe("cartCtrl", function () {
     });
   });
 
-    describe('when changeCount,', function () {
+  describe('when changeCount,', function () {
 
-      var item,items;
+    var item, items;
 
-      beforeEach(function () {
-        item =
-          {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1};
-        items =[
-          {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
-        ];
+    beforeEach(function () {
+      item =
+      {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1};
+      items = [
+        {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
+      ];
+    });
+
+    it('should return items to cart', function () {
+
+      spyOn(GoodsItemService, 'changeCartItemCount').and.callFake(function (item, callback) {
+        callback(items);
       });
+      spyOn(CartItemService, 'getTotalMoney');
 
-      it('should return items to cart', function () {
+      createController();
+      $scope.changeCount(item);
 
-        spyOn(GoodsItemService,'changeCartItemCount').and.callFake(function(item,callback){
-          callback(items);
-        });
-        spyOn(CartItemService, 'getTotalMoney');
-
-        createController();
-        $scope.changeCount(item);
-
-        GoodsItemService.changeCartItemCount(item,function(data){
-          expect($scope.cartItems).toEqual(data);
-          expect(CartItemService.getTotalMoney).toHaveBeenCalled();
-        });
-
+      GoodsItemService.changeCartItemCount(item, function (data) {
+        expect($scope.cartItems).toEqual(data);
+        expect(CartItemService.getTotalMoney).toHaveBeenCalled();
       });
 
     });
+
+  });
 
 });

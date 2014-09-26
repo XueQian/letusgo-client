@@ -2,7 +2,7 @@
 
 describe("shoppingListCtrl", function () {
 
-  var createController,$scope, GoodsItemService, CartItemService ;
+  var createController, $scope, GoodsItemService, CartItemService;
 
   beforeEach(function () {
 
@@ -71,16 +71,16 @@ describe("shoppingListCtrl", function () {
 
   describe('when remove,', function () {
 
-    it('should call remove from CartItemService',function(){
-      spyOn(CartItemService,'remove');
+    it('should call remove from CartItemService', function () {
+      spyOn(CartItemService, 'remove');
 
       createController();
       $scope.remove();
       expect(CartItemService.remove).toHaveBeenCalled;
     });
 
-    it('should call set from GoodsItemService',function(){
-      spyOn(GoodsItemService,'set');
+    it('should call set from GoodsItemService', function () {
+      spyOn(GoodsItemService, 'set');
 
       createController();
       $scope.remove();

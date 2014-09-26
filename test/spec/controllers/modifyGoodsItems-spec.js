@@ -40,17 +40,17 @@ describe("modifyGoodsItemsCtrl", function () {
 
   describe('when getItemById', function () {
 
-    it('should return item by id ',function(){
+    it('should return item by id ', function () {
       var id = 0;
       var item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
 
-      spyOn(Operategoodsitemservice,'getItemById').and.callFake(function (id,callback) {
+      spyOn(Operategoodsitemservice, 'getItemById').and.callFake(function (id, callback) {
         callback(item);
       });
 
       createController();
 
-      Operategoodsitemservice.getItemById(id,function (data) {
+      Operategoodsitemservice.getItemById(id, function (data) {
         expect($scope.item).toEqual(data);
       });
 
@@ -86,14 +86,14 @@ describe("modifyGoodsItemsCtrl", function () {
 
   describe('when modifyItem', function () {
 
-    it('should return items after modify',function(){
+    it('should return items after modify', function () {
       var index = 0;
       var item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
       var items = [
         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
       ];
 
-      spyOn(Operategoodsitemservice,'modifyItem').and.callFake(function (index,item,callback) {
+      spyOn(Operategoodsitemservice, 'modifyItem').and.callFake(function (index, item, callback) {
         callback(items);
       });
 
