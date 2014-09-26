@@ -47,26 +47,27 @@ describe("cartCtrl", function () {
     var items;
 
     beforeEach(function () {
-       items =[
-         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
-       ];
+      items = [
+        {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
+      ];
     });
 
     it('should return items to cart', function () {
 
-      spyOn(GoodsItemService,'getCartItems').and.callFake(function(callback){
+      spyOn(GoodsItemService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
       spyOn(CartItemService, 'getTotalMoney');
 
       createController();
 
-      GoodsItemService.getCartItems(function(data){
+      GoodsItemService.getCartItems(function (data) {
         expect($scope.cartItems).toEqual(data);
         expect(CartItemService.getTotalMoney).toHaveBeenCalled();
       });
 
     });
+  });
 
     describe('when changeCount,', function () {
 
@@ -98,7 +99,5 @@ describe("cartCtrl", function () {
       });
 
     });
-
-  });
 
 });

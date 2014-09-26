@@ -1,119 +1,160 @@
-//'use strict';
+'use strict';
+
+describe("manageCategoryCtrl", function () {
+
+  var  createController, $scope, $location, Operatecategorieservice, Operategoodsitemservice;
+
+  beforeEach(function () {
+
+    module('letusgoApp');
+
+    inject(function ($injector) {
+
+      $scope = $injector.get('$rootScope').$new();
+      $location = $injector.get('$location');
+      Operatecategorieservice = $injector.get('Operatecategorieservice');
+      Operategoodsitemservice = $injector.get('Operategoodsitemservice');
+      var $controller = $injector.get('$controller');
+
+      createController = function () {
+
+        return $controller('manageCategoryCtrl', {
+          $scope: $scope,
+          $location: $location,
+          Operatecategorieservice: Operatecategorieservice,
+          Operategoodsitemservice: Operategoodsitemservice
+        });
+      };
+    });
+  });
+
+  describe('when load', function () {
+    it('it should emit to parent_manageActive', function () {
+      spyOn($scope, '$emit');
+      createController();
+      expect($scope.$emit).toHaveBeenCalledWith('parent_manageActive');
+    });
+
+  });
+  describe('when getCategories', function () {
+
+    var categories;
+
+    beforeEach(function () {
+      categories = [
+        {id: 0, name: '服装鞋包'}
+      ];
+    });
+
+    it('should return items to cart', function () {
+
+      spyOn(Operatecategorieservice, 'getCategories').and.callFake(function (callback) {
+        callback(categories);
+      });
+
+      createController();
+
+      Operatecategorieservice.getCategories(function (data) {
+        expect($scope.categories).toEqual(data);
+      });
+
+    });
+
+  });
+
+  describe('when getItemById', function () {
+
+    it('should call getItemById in Operategoodsitemservice', function () {
+
+      var id = 0;
+      spyOn(Operategoodsitemservice,'getItemById');
+
+      createController();
+      $scope.getItemById(id);
+      expect(Operategoodsitemservice.getItemById).toHaveBeenCalledWith(id);
+
+    });
+
+  });
+
+  describe('when deleteCategory', function () {
+
+    it('should call deleteCategory in Operatecategorieservice', function () {
+
+      var index = 0;
+      spyOn(Operatecategorieservice,'deleteCategory');
+
+      createController();
+      $scope.deleteCategory(index);
+      expect(Operatecategorieservice.deleteCategory).toHaveBeenCalledWith(index);
+
+    });
+
+    it('should get categories',function() {
+
+      var categories = [
+        {id: 0, name: '服装鞋包'}
+      ];
+      var index = 0;
+
+      spyOn(Operatecategorieservice, 'getCategories').and.callFake(function (callback) {
+        callback(categories);
+      });
+
+      createController();
+      $scope.deleteCategory(index);
+
+      Operatecategorieservice.getCategories(function (data) {
+        expect($scope.categories).toEqual(data);
+      });
+    });
+
+  });
+
+//  $scope.addCategory = function () {
 //
-//describe("manageCategoryCtrl", function () {
-//
-//  var $scope, GoodsItemService, createController, localStorageService, Operatecategorieservice, Operategoodsitemservice;
-//
-//  beforeEach(function () {
-//
-//    module('letusgoApp');
-//
-//    inject(function ($injector) {
-//
-//      $scope = $injector.get('$rootScope').$new();
-//      GoodsItemService = $injector.get('GoodsItemService');
-//      localStorageService = $injector.get('localStorageService');
-//      Operatecategorieservice = $injector.get('Operatecategorieservice');
-//      Operategoodsitemservice = $injector.get('Operategoodsitemservice');
-//      var $controller = $injector.get('$controller');
-//
-//      createController = function () {
-//
-//        return $controller('manageCategoryCtrl', {
-//          $scope: $scope,
-//          GoodsItemService: GoodsItemService,
-//          Operatecategorieservice: Operatecategorieservice,
-//          Operategoodsitemservice: Operategoodsitemservice
-//        });
-//      };
+//    Operatecategorieservice.addCategory($scope.category, function (data) {
+//      $scope.categories = data;
+//      $location.path('/manageCategory');
 //    });
-//  });
 //
-//  describe('when load', function () {
-//    it('it should emit to parent_manageActive', function () {
-//      spyOn($scope, '$emit');
-//      createController();
-//      expect($scope.$emit).toHaveBeenCalledWith('parent_manageActive');
-//    });
-//
-//    it('should call loadcategories in Operatecategorieservice', function () {
-//      spyOn(Operatecategorieservice, 'loadcategories');
-//      createController();
-//      expect(Operatecategorieservice.loadcategories).toHaveBeenCalled();
-//    });
-//
-//  });
-//
-//  describe('when getItemById', function () {
-//
-//    it('should return correct value and should call getItemById in Operategoodsitemservice ', function () {
-//      var id = 1;
-//      var result = true;
-//      spyOn(Operategoodsitemservice, 'getItemById').and.returnValue(result);
-//      createController();
-//      expect($scope.getItemById(id)).toBe(true);
-//      expect(Operategoodsitemservice.getItemById).toHaveBeenCalled();
-//    });
-//
-//  });
-//
-//  describe('when deleteCategory', function () {
-//
-//    it('should call set in GoodsItemService and should call splice', function () {
-//      var id = 1;
-//      var index = 1;
-//      var result = true;
-//      $scope.categories = [
-//        {id: 1, name: '1'},
-//        {id: 2, name: '2'}
-//      ];
-//      createController();
-//      spyOn(Operategoodsitemservice, 'getItemById').and.returnValue(result);
-//      spyOn($scope.categories, 'splice');
-//      spyOn(GoodsItemService, 'set');
-//      $scope.deleteCategory(index, id);
-//      expect(GoodsItemService.set).toHaveBeenCalled();
-//      expect($scope.categories.splice).toHaveBeenCalledWith(index, id);
-//    });
-//
-//    it('deleteCategory when false', function () {
-//      var id = 1;
-//      var index = 1;
-//      var result = false;
-//      $scope.categories = [
-//        {id: 1, name: '1'},
-//        {id: 2, name: '2'}
-//      ];
-//      createController();
-//      spyOn(Operategoodsitemservice, 'getItemById').and.returnValue(result);
-//      spyOn($scope.categories, 'splice');
-//      spyOn(GoodsItemService, 'set');
-//      $scope.deleteCategory(index, id);
-//    });
-//
-//  });
-//
-//  describe('when addCategory', function () {
-//
-//    it('should return correct value ', function () {
-//      $scope.category = {id: 1, name: '1'};
-//      $scope.categories = [
-//        {id: 1, name: '1'},
-//        {id: 2, name: '2'}
-//      ];
-//      spyOn(Operatecategorieservice, 'addCategory');
-//
-//      createController();
-//      $scope.addCategory();
-//      expect(Operatecategorieservice.addCategory).toHaveBeenCalledWith($scope.category, $scope.categories);
-//
-//    });
-//
-//  });
-//
-//});
-//
-//
-//
-//
-//
+//  };
+  describe('when addCategory', function () {
+
+    var categories,category;
+
+    beforeEach(function () {
+      categories = [
+        {id: 0, name: '服装鞋包'}
+      ];
+      category = {id: 0, name: '服装鞋包'};
+    });
+
+    it('should return categories after add', function () {
+
+      spyOn(Operatecategorieservice, 'addCategory').and.callFake(function (category,callback) {
+        callback(categories);
+      });
+
+      createController();
+      $scope.addCategory();
+
+      Operatecategorieservice.addCategory(category,function (data) {
+        expect($scope.categories).toEqual(data);
+      });
+
+    });
+
+
+
+
+  });
+
+
+
+});
+
+
+
+
+
