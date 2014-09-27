@@ -2,7 +2,7 @@
 
 describe("manageCategoryCtrl", function () {
 
-  var createController, $scope, $location, categoryService, Operategoodsitemservice;
+  var createController, $scope, $location, categoryService, itemService;
 
   beforeEach(function () {
 
@@ -13,7 +13,7 @@ describe("manageCategoryCtrl", function () {
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
       categoryService = $injector.get('categoryService');
-      Operategoodsitemservice = $injector.get('Operategoodsitemservice');
+      itemService = $injector.get('itemService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
@@ -22,7 +22,7 @@ describe("manageCategoryCtrl", function () {
           $scope: $scope,
           $location: $location,
           categoryService: categoryService,
-          Operategoodsitemservice: Operategoodsitemservice
+          itemService: itemService
         });
       };
     });
@@ -64,14 +64,14 @@ describe("manageCategoryCtrl", function () {
 
   describe('when getItemById', function () {
 
-    it('should call getItemById in Operategoodsitemservice', function () {
+    it('should call getItemById in itemService', function () {
 
       var id = 0;
-      spyOn(Operategoodsitemservice, 'getItemById');
+      spyOn(itemService, 'getItemById');
 
       createController();
       $scope.getItemById(id);
-      expect(Operategoodsitemservice.getItemById).toHaveBeenCalledWith(id);
+      expect(itemService.getItemById).toHaveBeenCalledWith(id);
 
     });
 

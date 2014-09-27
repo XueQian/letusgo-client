@@ -2,7 +2,7 @@
 
 describe("modifyGoodsItemsCtrl", function () {
 
-  var createController, $scope, categoryService, Operategoodsitemservice, $routeParams;
+  var createController, $scope, categoryService, itemService, $routeParams;
 
   beforeEach(function () {
 
@@ -12,7 +12,7 @@ describe("modifyGoodsItemsCtrl", function () {
 
       $scope = $injector.get('$rootScope').$new();
       categoryService = $injector.get('categoryService');
-      Operategoodsitemservice = $injector.get('Operategoodsitemservice');
+      itemService = $injector.get('itemService');
       $routeParams = $injector.get('$routeParams');
       var $controller = $injector.get('$controller');
 
@@ -21,7 +21,7 @@ describe("modifyGoodsItemsCtrl", function () {
         return $controller('modifyGoodsItemsCtrl', {
           $scope: $scope,
           categoryService: categoryService,
-          Operategoodsitemservice: Operategoodsitemservice,
+          itemService: itemService,
           $routeParams: $routeParams
         });
       };
@@ -44,13 +44,13 @@ describe("modifyGoodsItemsCtrl", function () {
       var id = 0;
       var item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
 
-      spyOn(Operategoodsitemservice, 'getItemById').and.callFake(function (id, callback) {
+      spyOn(itemService, 'getItemById').and.callFake(function (id, callback) {
         callback(item);
       });
 
       createController();
 
-      Operategoodsitemservice.getItemById(id, function (data) {
+      itemService.getItemById(id, function (data) {
         expect($scope.item).toEqual(data);
       });
 
@@ -93,13 +93,13 @@ describe("modifyGoodsItemsCtrl", function () {
         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
       ];
 
-      spyOn(Operategoodsitemservice, 'modifyItem').and.callFake(function (index, item, callback) {
+      spyOn(itemService, 'modifyItem').and.callFake(function (index, item, callback) {
         callback(items);
       });
 
       createController();
       $scope.modifyItem(index);
-//      expect(Operategoodsitemservice.modifyItem).toHaveBeenCalledWith(index,item,function(){});
+//      expect(itemService.modifyItem).toHaveBeenCalledWith(index,item,function(){});
 
     });
 

@@ -2,7 +2,7 @@
 
 describe("manageGoodsItemsCtrl", function () {
 
-  var createController, $location, $scope, categoryService, Operategoodsitemservice;
+  var createController, $location, $scope, categoryService, itemService;
 
   beforeEach(function () {
 
@@ -13,7 +13,7 @@ describe("manageGoodsItemsCtrl", function () {
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
       categoryService = $injector.get('categoryService');
-      Operategoodsitemservice = $injector.get('Operategoodsitemservice');
+      itemService = $injector.get('itemService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
@@ -21,7 +21,7 @@ describe("manageGoodsItemsCtrl", function () {
         return $controller('manageGoodsItemsCtrl', {
           $scope: $scope,
           categoryService: categoryService,
-          Operategoodsitemservice: Operategoodsitemservice,
+          itemService: itemService,
           $location: $location
 
         });
@@ -51,13 +51,13 @@ describe("manageGoodsItemsCtrl", function () {
 
     it('should return goodsItems', function () {
 
-      spyOn(Operategoodsitemservice, 'getGoodsItems').and.callFake(function (callback) {
+      spyOn(itemService, 'getGoodsItems').and.callFake(function (callback) {
         callback(items);
       });
 
       createController();
 
-      Operategoodsitemservice.getGoodsItems(function (data) {
+      itemService.getGoodsItems(function (data) {
         expect($scope.products).toEqual(data);
       });
 
@@ -66,14 +66,14 @@ describe("manageGoodsItemsCtrl", function () {
 
   describe('when deleteItems', function () {
 
-    it('should call deleteGoodsItems in Operategoodsitemservice', function () {
+    it('should call deleteGoodsItems in itemService', function () {
 
       var index = 0;
-      spyOn(Operategoodsitemservice, 'deleteGoodsItems');
+      spyOn(itemService, 'deleteGoodsItems');
 
       createController();
       $scope.deleteItems(index);
-      expect(Operategoodsitemservice.deleteGoodsItems).toHaveBeenCalledWith(index);
+      expect(itemService.deleteGoodsItems).toHaveBeenCalledWith(index);
 
     });
 
@@ -84,14 +84,14 @@ describe("manageGoodsItemsCtrl", function () {
       ];
       var index = 0;
 
-      spyOn(Operategoodsitemservice, 'getGoodsItems').and.callFake(function (callback) {
+      spyOn(itemService, 'getGoodsItems').and.callFake(function (callback) {
         callback(items);
       });
 
       createController();
       $scope.deleteItems(index);
 
-      Operategoodsitemservice.getGoodsItems(function (data) {
+      itemService.getGoodsItems(function (data) {
         expect($scope.products).toEqual(data);
       });
     });
@@ -137,14 +137,14 @@ describe("manageGoodsItemsCtrl", function () {
 
     it('should return items after add', function () {
 
-      spyOn(Operategoodsitemservice, 'addItem').and.callFake(function (item, callback) {
+      spyOn(itemService, 'addItem').and.callFake(function (item, callback) {
         callback(items);
       });
 
       createController();
       $scope.addGoodsItems();
 
-      Operategoodsitemservice.addItem(item, function (data) {
+      itemService.addItem(item, function (data) {
         expect($scope.products).toEqual(data);
       });
 
