@@ -2,7 +2,7 @@
 
 describe("shoppingListCtrl", function () {
 
-  var createController, $scope, cartService, CartItemService;
+  var createController, $scope, cartService;
 
   beforeEach(function () {
 
@@ -12,15 +12,13 @@ describe("shoppingListCtrl", function () {
 
       $scope = $injector.get('$rootScope').$new();
       cartService = $injector.get('cartService');
-      CartItemService = $injector.get('CartItemService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
 
         return $controller('shoppingListCtrl', {
           $scope: $scope,
-          cartService: cartService,
-          CartItemService: CartItemService
+          cartService: cartService
         });
       };
     });
@@ -57,13 +55,13 @@ describe("shoppingListCtrl", function () {
       spyOn(cartService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
-      spyOn(CartItemService, 'getTotalMoney');
+      spyOn(cartService, 'getTotalMoney');
 
       createController();
 
       cartService.getCartItems(function (data) {
         expect($scope.orderItems).toEqual(data);
-        expect(CartItemService.getTotalMoney).toHaveBeenCalled();
+        expect(cartService.getTotalMoney).toHaveBeenCalled();
       });
 
     });
@@ -71,12 +69,12 @@ describe("shoppingListCtrl", function () {
 
   describe('when remove,', function () {
 
-    it('should call remove from CartItemService', function () {
-      spyOn(CartItemService, 'remove');
+    it('should call remove from cartService', function () {
+      spyOn(cartService, 'remove');
 
       createController();
       $scope.remove();
-      expect(CartItemService.remove).toHaveBeenCalled;
+      expect(cartService.remove).toHaveBeenCalled;
     });
 
     it('should call set from cartService', function () {
