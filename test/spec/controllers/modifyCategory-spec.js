@@ -2,7 +2,7 @@
 
 describe("modifyCategoryCtrl", function () {
 
-  var createController, $scope, Operatecategorieservice, $routeParams;
+  var createController, $scope, categoryService, $routeParams;
 
   beforeEach(function () {
 
@@ -11,7 +11,7 @@ describe("modifyCategoryCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      Operatecategorieservice = $injector.get('Operatecategorieservice');
+      categoryService = $injector.get('categoryService');
       $routeParams = $injector.get('$routeParams');
       var $controller = $injector.get('$controller');
 
@@ -19,7 +19,7 @@ describe("modifyCategoryCtrl", function () {
 
         return $controller('modifyCategoryCtrl', {
           $scope: $scope,
-          Operatecategorieservice: Operatecategorieservice,
+          categoryService: categoryService,
           $routeParams: $routeParams
         });
       };
@@ -42,13 +42,13 @@ describe("modifyCategoryCtrl", function () {
       var id = 0;
       var category = {id: 0, name: '服装鞋包'};
 
-      spyOn(Operatecategorieservice, 'getcategoryById').and.callFake(function (id, callback) {
+      spyOn(categoryService, 'getcategoryById').and.callFake(function (id, callback) {
         callback(category);
       });
 
       createController();
 
-      Operatecategorieservice.getcategoryById(id, function (data) {
+      categoryService.getcategoryById(id, function (data) {
         expect($scope.category).toEqual(data);
       });
 
@@ -65,14 +65,14 @@ describe("modifyCategoryCtrl", function () {
         {id: 0, name: '服装鞋包'}
       ];
 
-      spyOn(Operatecategorieservice, 'modifyCategory').and.callFake(function (index, category, callback) {
+      spyOn(categoryService, 'modifyCategory').and.callFake(function (index, category, callback) {
         callback(categories);
       });
 
       createController();
       $scope.modifyCategory(index);
 
-      Operatecategorieservice.modifyCategory(index, category, function (data) {
+      categoryService.modifyCategory(index, category, function (data) {
         expect($scope.categories).toEqual(data);
       });
 

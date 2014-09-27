@@ -2,7 +2,7 @@
 
 describe("manageCategoryCtrl", function () {
 
-  var createController, $scope, $location, Operatecategorieservice, Operategoodsitemservice;
+  var createController, $scope, $location, categoryService, Operategoodsitemservice;
 
   beforeEach(function () {
 
@@ -12,7 +12,7 @@ describe("manageCategoryCtrl", function () {
 
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
-      Operatecategorieservice = $injector.get('Operatecategorieservice');
+      categoryService = $injector.get('categoryService');
       Operategoodsitemservice = $injector.get('Operategoodsitemservice');
       var $controller = $injector.get('$controller');
 
@@ -21,7 +21,7 @@ describe("manageCategoryCtrl", function () {
         return $controller('manageCategoryCtrl', {
           $scope: $scope,
           $location: $location,
-          Operatecategorieservice: Operatecategorieservice,
+          categoryService: categoryService,
           Operategoodsitemservice: Operategoodsitemservice
         });
       };
@@ -48,13 +48,13 @@ describe("manageCategoryCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(Operatecategorieservice, 'getCategories').and.callFake(function (callback) {
+      spyOn(categoryService, 'getCategories').and.callFake(function (callback) {
         callback(categories);
       });
 
       createController();
 
-      Operatecategorieservice.getCategories(function (data) {
+      categoryService.getCategories(function (data) {
         expect($scope.categories).toEqual(data);
       });
 
@@ -79,14 +79,14 @@ describe("manageCategoryCtrl", function () {
 
   describe('when deleteCategory', function () {
 
-    it('should call deleteCategory in Operatecategorieservice', function () {
+    it('should call deleteCategory in categoryService', function () {
 
       var index = 0;
-      spyOn(Operatecategorieservice, 'deleteCategory');
+      spyOn(categoryService, 'deleteCategory');
 
       createController();
       $scope.deleteCategory(index);
-      expect(Operatecategorieservice.deleteCategory).toHaveBeenCalledWith(index);
+      expect(categoryService.deleteCategory).toHaveBeenCalledWith(index);
 
     });
 
@@ -97,14 +97,14 @@ describe("manageCategoryCtrl", function () {
       ];
       var index = 0;
 
-      spyOn(Operatecategorieservice, 'getCategories').and.callFake(function (callback) {
+      spyOn(categoryService, 'getCategories').and.callFake(function (callback) {
         callback(categories);
       });
 
       createController();
       $scope.deleteCategory(index);
 
-      Operatecategorieservice.getCategories(function (data) {
+      categoryService.getCategories(function (data) {
         expect($scope.categories).toEqual(data);
       });
     });
@@ -124,14 +124,14 @@ describe("manageCategoryCtrl", function () {
 
     it('should return categories after add', function () {
 
-      spyOn(Operatecategorieservice, 'addCategory').and.callFake(function (category, callback) {
+      spyOn(categoryService, 'addCategory').and.callFake(function (category, callback) {
         callback(categories);
       });
 
       createController();
       $scope.addCategory();
 
-      Operatecategorieservice.addCategory(category, function (data) {
+      categoryService.addCategory(category, function (data) {
         expect($scope.categories).toEqual(data);
       });
 
