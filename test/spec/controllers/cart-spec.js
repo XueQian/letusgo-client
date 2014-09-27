@@ -2,7 +2,7 @@
 
 describe("cartCtrl", function () {
 
-  var createController, $scope, itemService, CartItemService;
+  var createController, $scope, cartService, CartItemService;
 
   beforeEach(function () {
 
@@ -11,7 +11,7 @@ describe("cartCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      itemService = $injector.get('itemService');
+      cartService = $injector.get('cartService');
       CartItemService = $injector.get('CartItemService');
       var $controller = $injector.get('$controller');
 
@@ -19,7 +19,7 @@ describe("cartCtrl", function () {
 
         return $controller('cartCtrl', {
           $scope: $scope,
-          itemService: itemService,
+          cartService: cartService,
           CartItemService: CartItemService
         });
       };
@@ -54,14 +54,14 @@ describe("cartCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(itemService, 'getCartItems').and.callFake(function (callback) {
+      spyOn(cartService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
       spyOn(CartItemService, 'getTotalMoney');
 
       createController();
 
-      itemService.getCartItems(function (data) {
+      cartService.getCartItems(function (data) {
         expect($scope.cartItems).toEqual(data);
         expect(CartItemService.getTotalMoney).toHaveBeenCalled();
       });
@@ -83,7 +83,7 @@ describe("cartCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(itemService, 'changeCartItemCount').and.callFake(function (item, callback) {
+      spyOn(cartService, 'changeCartItemCount').and.callFake(function (item, callback) {
         callback(items);
       });
       spyOn(CartItemService, 'getTotalMoney');
@@ -91,7 +91,7 @@ describe("cartCtrl", function () {
       createController();
       $scope.changeCount(item);
 
-      itemService.changeCartItemCount(item, function (data) {
+      cartService.changeCartItemCount(item, function (data) {
         expect($scope.cartItems).toEqual(data);
         expect(CartItemService.getTotalMoney).toHaveBeenCalled();
       });

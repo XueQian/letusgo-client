@@ -2,7 +2,7 @@
 
 xdescribe("indexCtrl", function () {
 
-  var createController, $scope, itemService;
+  var createController, $scope, cartService;
 
   beforeEach(function () {
 
@@ -12,21 +12,21 @@ xdescribe("indexCtrl", function () {
 
       $rootScope = $injector.get('$rootScope');
       $scope = $injector.get('$rootScope').$new();
-      itemService = $injector.get('itemService');
+      cartService = $injector.get('cartService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
 
         return $controller('indexCtrl', {
           $scope: $scope,
-          itemService: itemService
+          cartService: cartService
         });
       };
     });
   });
 
   xit('parent_totalCount should return correct value', function () {
-    spyOn(itemService, 'getTotalCount').and.returnValue(2);
+    spyOn(cartService, 'getTotalCount').and.returnValue(2);
     createController();
     $scope.$digest();
     $rootScope.$broadcast('parent_totalCount');
@@ -34,13 +34,13 @@ xdescribe("indexCtrl", function () {
     expect($scope.totalCount).toBe(2);
   });
 
-  xit('parent_totalCount should should call getTotalCount in itemService', function () {
-    spyOn(itemService, 'getTotalCount');
+  xit('parent_totalCount should should call getTotalCount in cartService', function () {
+    spyOn(cartService, 'getTotalCount');
     createController();
     $scope.$digest();
     $rootScope.$broadcast('parent_totalCount');
     $scope.$digest();
-    expect(itemService.getTotalCount).toHaveBeenCalled();
+    expect(cartService.getTotalCount).toHaveBeenCalled();
   });
 
   it('parent_totalCount===0 should return correct value', function () {

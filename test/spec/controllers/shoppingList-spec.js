@@ -2,7 +2,7 @@
 
 describe("shoppingListCtrl", function () {
 
-  var createController, $scope, itemService, CartItemService;
+  var createController, $scope, cartService, CartItemService;
 
   beforeEach(function () {
 
@@ -11,7 +11,7 @@ describe("shoppingListCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      itemService = $injector.get('itemService');
+      cartService = $injector.get('cartService');
       CartItemService = $injector.get('CartItemService');
       var $controller = $injector.get('$controller');
 
@@ -19,7 +19,7 @@ describe("shoppingListCtrl", function () {
 
         return $controller('shoppingListCtrl', {
           $scope: $scope,
-          itemService: itemService,
+          cartService: cartService,
           CartItemService: CartItemService
         });
       };
@@ -54,14 +54,14 @@ describe("shoppingListCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(itemService, 'getCartItems').and.callFake(function (callback) {
+      spyOn(cartService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
       spyOn(CartItemService, 'getTotalMoney');
 
       createController();
 
-      itemService.getCartItems(function (data) {
+      cartService.getCartItems(function (data) {
         expect($scope.orderItems).toEqual(data);
         expect(CartItemService.getTotalMoney).toHaveBeenCalled();
       });
@@ -79,12 +79,12 @@ describe("shoppingListCtrl", function () {
       expect(CartItemService.remove).toHaveBeenCalled;
     });
 
-    it('should call set from itemService', function () {
-      spyOn(itemService, 'set');
+    it('should call set from cartService', function () {
+      spyOn(cartService, 'set');
 
       createController();
       $scope.remove();
-      expect(itemService.set).toHaveBeenCalled;
+      expect(cartService.set).toHaveBeenCalled;
     });
 
     it('it should emit to parent_totalCount===0', function () {
