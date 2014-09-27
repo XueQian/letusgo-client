@@ -2,7 +2,7 @@
 
 describe("shoppingListCtrl", function () {
 
-  var createController, $scope, GoodsItemService, CartItemService;
+  var createController, $scope, itemService, CartItemService;
 
   beforeEach(function () {
 
@@ -11,7 +11,7 @@ describe("shoppingListCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      GoodsItemService = $injector.get('GoodsItemService');
+      itemService = $injector.get('itemService');
       CartItemService = $injector.get('CartItemService');
       var $controller = $injector.get('$controller');
 
@@ -19,7 +19,7 @@ describe("shoppingListCtrl", function () {
 
         return $controller('shoppingListCtrl', {
           $scope: $scope,
-          GoodsItemService: GoodsItemService,
+          itemService: itemService,
           CartItemService: CartItemService
         });
       };
@@ -54,14 +54,14 @@ describe("shoppingListCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(GoodsItemService, 'getCartItems').and.callFake(function (callback) {
+      spyOn(itemService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
       spyOn(CartItemService, 'getTotalMoney');
 
       createController();
 
-      GoodsItemService.getCartItems(function (data) {
+      itemService.getCartItems(function (data) {
         expect($scope.orderItems).toEqual(data);
         expect(CartItemService.getTotalMoney).toHaveBeenCalled();
       });
@@ -79,12 +79,12 @@ describe("shoppingListCtrl", function () {
       expect(CartItemService.remove).toHaveBeenCalled;
     });
 
-    it('should call set from GoodsItemService', function () {
-      spyOn(GoodsItemService, 'set');
+    it('should call set from itemService', function () {
+      spyOn(itemService, 'set');
 
       createController();
       $scope.remove();
-      expect(GoodsItemService.set).toHaveBeenCalled;
+      expect(itemService.set).toHaveBeenCalled;
     });
 
     it('it should emit to parent_totalCount===0', function () {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('goodsListCtrl', function ($scope, GoodsItemService, Operategoodsitemservice) {
+  .controller('goodsListCtrl', function ($scope, itemService, Operategoodsitemservice) {
 
     $scope.$emit('parent_goodsListActive');
 
@@ -13,11 +13,11 @@ angular.module('letusgoApp')
 
     $scope.addToCart = function (item) {
 
-      GoodsItemService.addToCart(item, function () {
+      itemService.addToCart(item, function () {
 
-        GoodsItemService.getTotalCount($scope.products, function (data) {
+        itemService.getTotalCount($scope.products, function (data) {
 
-          GoodsItemService.set('totalCount', data);
+          itemService.set('totalCount', data);
           $scope.$emit('parent_totalCount');
         });
 

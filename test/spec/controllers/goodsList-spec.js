@@ -2,7 +2,7 @@
 
 describe("goodsListCtrl", function () {
 
-  var createController, $scope, GoodsItemService, Operategoodsitemservice;
+  var createController, $scope, itemService, Operategoodsitemservice;
 
   beforeEach(function () {
 
@@ -11,7 +11,7 @@ describe("goodsListCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      GoodsItemService = $injector.get('GoodsItemService');
+      itemService = $injector.get('itemService');
       Operategoodsitemservice = $injector.get('Operategoodsitemservice');
       var $controller = $injector.get('$controller');
 
@@ -19,7 +19,7 @@ describe("goodsListCtrl", function () {
 
         return $controller('goodsListCtrl', {
           $scope: $scope,
-          GoodsItemService: GoodsItemService,
+          itemService: itemService,
           Operategoodsitemservice: Operategoodsitemservice
         });
       };
@@ -78,20 +78,20 @@ describe("goodsListCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(GoodsItemService, 'addToCart').and.callFake(function (item, callback) {
+      spyOn(itemService, 'addToCart').and.callFake(function (item, callback) {
         callback();
       });
-      spyOn(GoodsItemService, 'getTotalCount').and.callFake(function (items, callback) {
+      spyOn(itemService, 'getTotalCount').and.callFake(function (items, callback) {
         callback(items);
       });
-      spyOn(GoodsItemService, 'set');
+      spyOn(itemService, 'set');
 
       createController();
       $scope.addToCart(item);
 
-      GoodsItemService.addToCart(item, function () {
-        GoodsItemService.addToCart(item, function (data) {
-          expect(GoodsItemService.set).toHaveBeenCalled();
+      itemService.addToCart(item, function () {
+        itemService.addToCart(item, function (data) {
+          expect(itemService.set).toHaveBeenCalled();
         });
       });
 
