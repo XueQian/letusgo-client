@@ -16,7 +16,6 @@ angular.module('letusgoApp')
       itemService.getGoodsItems(function (data) {
         $scope.products = data;
       });
-
     };
 
     categoryService.getCategories(function (data) {
@@ -28,7 +27,6 @@ angular.module('letusgoApp')
       itemService.addItem($scope.item, function (data) {
         $scope.products = data;
         $location.path('/manageGoodsItems');
-
       });
     };
 
