@@ -52,7 +52,7 @@ angular
         controller: 'modifyCategoryCtrl'
       })
       .when('/modifyGoodsItems/:id', {
-        templateUrl: 'views/modifyGoodsItems.html',
+        templateUrl: 'views/modifyItem.html',
         controller: 'modifyGoodsItemsCtrl'
       })
       .otherwise({
