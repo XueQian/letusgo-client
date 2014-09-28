@@ -124,7 +124,7 @@ describe("manageGoodsItemsCtrl", function () {
 
   });
 
-  describe('when addGoodsItems', function () {
+  describe('when addItem', function () {
 
     var items, item;
 
@@ -142,7 +142,7 @@ describe("manageGoodsItemsCtrl", function () {
       });
 
       createController();
-      $scope.addGoodsItems();
+      $scope.addItem();
 
       ItemService.addItem(item, function (data) {
         expect($scope.products).toEqual(data);

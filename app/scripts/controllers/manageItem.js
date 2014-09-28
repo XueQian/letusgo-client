@@ -22,7 +22,7 @@ angular.module('letusgoApp')
       $scope.categories = data;
     });
 
-    $scope.addGoodsItems = function () {
+    $scope.addItem = function () {
 
       ItemService.addItem($scope.item, function (data) {
         $scope.products = data;
