@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('modifyGoodsItemsCtrl', function ($scope, categoryService, itemService, $routeParams) {
+  .controller('modifyGoodsItemsCtrl', function ($scope, CategoryService, itemService, $routeParams) {
 
     $scope.$emit('parent_manageGoodsActive');
 
@@ -9,7 +9,7 @@ angular.module('letusgoApp')
       $scope.item = data;
     });
 
-    categoryService.getCategories(function (data) {
+    CategoryService.getCategories(function (data) {
       $scope.categories = data;
     });
 

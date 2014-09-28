@@ -2,7 +2,7 @@
 
 describe("manageCategoryCtrl", function () {
 
-  var createController, $scope, $location, categoryService, itemService;
+  var createController, $scope, $location, CategoryService, itemService;
 
   beforeEach(function () {
 
@@ -12,7 +12,7 @@ describe("manageCategoryCtrl", function () {
 
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
-      categoryService = $injector.get('categoryService');
+      CategoryService = $injector.get('CategoryService');
       itemService = $injector.get('itemService');
       var $controller = $injector.get('$controller');
 
@@ -21,7 +21,7 @@ describe("manageCategoryCtrl", function () {
         return $controller('manageCategoryCtrl', {
           $scope: $scope,
           $location: $location,
-          categoryService: categoryService,
+          CategoryService: CategoryService,
           itemService: itemService
         });
       };
@@ -48,13 +48,13 @@ describe("manageCategoryCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(categoryService, 'getCategories').and.callFake(function (callback) {
+      spyOn(CategoryService, 'getCategories').and.callFake(function (callback) {
         callback(categories);
       });
 
       createController();
 
-      categoryService.getCategories(function (data) {
+      CategoryService.getCategories(function (data) {
         expect($scope.categories).toEqual(data);
       });
 
@@ -79,14 +79,14 @@ describe("manageCategoryCtrl", function () {
 
   describe('when deleteCategory', function () {
 
-    it('should call deleteCategory in categoryService', function () {
+    it('should call deleteCategory in CategoryService', function () {
 
       var index = 0;
-      spyOn(categoryService, 'deleteCategory');
+      spyOn(CategoryService, 'deleteCategory');
 
       createController();
       $scope.deleteCategory(index);
-      expect(categoryService.deleteCategory).toHaveBeenCalledWith(index);
+      expect(CategoryService.deleteCategory).toHaveBeenCalledWith(index);
 
     });
 
@@ -97,14 +97,14 @@ describe("manageCategoryCtrl", function () {
       ];
       var index = 0;
 
-      spyOn(categoryService, 'getCategories').and.callFake(function (callback) {
+      spyOn(CategoryService, 'getCategories').and.callFake(function (callback) {
         callback(categories);
       });
 
       createController();
       $scope.deleteCategory(index);
 
-      categoryService.getCategories(function (data) {
+      CategoryService.getCategories(function (data) {
         expect($scope.categories).toEqual(data);
       });
     });
@@ -124,14 +124,14 @@ describe("manageCategoryCtrl", function () {
 
     it('should return categories after add', function () {
 
-      spyOn(categoryService, 'addCategory').and.callFake(function (category, callback) {
+      spyOn(CategoryService, 'addCategory').and.callFake(function (category, callback) {
         callback(categories);
       });
 
       createController();
       $scope.addCategory();
 
-      categoryService.addCategory(category, function (data) {
+      CategoryService.addCategory(category, function (data) {
         expect($scope.categories).toEqual(data);
       });
 

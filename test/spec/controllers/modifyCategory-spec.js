@@ -2,7 +2,7 @@
 
 describe("modifyCategoryCtrl", function () {
 
-  var createController, $scope, categoryService, $routeParams;
+  var createController, $scope, CategoryService, $routeParams;
 
   beforeEach(function () {
 
@@ -11,7 +11,7 @@ describe("modifyCategoryCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      categoryService = $injector.get('categoryService');
+      CategoryService = $injector.get('CategoryService');
       $routeParams = $injector.get('$routeParams');
       var $controller = $injector.get('$controller');
 
@@ -19,7 +19,7 @@ describe("modifyCategoryCtrl", function () {
 
         return $controller('modifyCategoryCtrl', {
           $scope: $scope,
-          categoryService: categoryService,
+          CategoryService: CategoryService,
           $routeParams: $routeParams
         });
       };
@@ -42,13 +42,13 @@ describe("modifyCategoryCtrl", function () {
       var id = 0;
       var category = {id: 0, name: '服装鞋包'};
 
-      spyOn(categoryService, 'getcategoryById').and.callFake(function (id, callback) {
+      spyOn(CategoryService, 'getcategoryById').and.callFake(function (id, callback) {
         callback(category);
       });
 
       createController();
 
-      categoryService.getcategoryById(id, function (data) {
+      CategoryService.getcategoryById(id, function (data) {
         expect($scope.category).toEqual(data);
       });
 
@@ -65,14 +65,14 @@ describe("modifyCategoryCtrl", function () {
         {id: 0, name: '服装鞋包'}
       ];
 
-      spyOn(categoryService, 'modifyCategory').and.callFake(function (index, category, callback) {
+      spyOn(CategoryService, 'modifyCategory').and.callFake(function (index, category, callback) {
         callback(categories);
       });
 
       createController();
       $scope.modifyCategory(index);
 
-      categoryService.modifyCategory(index, category, function (data) {
+      CategoryService.modifyCategory(index, category, function (data) {
         expect($scope.categories).toEqual(data);
       });
 

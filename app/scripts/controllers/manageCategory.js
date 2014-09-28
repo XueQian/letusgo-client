@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('manageCategoryCtrl', function ($scope, $location, categoryService, itemService) {
+  .controller('manageCategoryCtrl', function ($scope, $location, CategoryService, itemService) {
 
     $scope.$emit('parent_manageActive');
 
-    categoryService.getCategories(function (data) {
+    CategoryService.getCategories(function (data) {
       $scope.categories = data;
     });
 
@@ -15,16 +15,16 @@ angular.module('letusgoApp')
 
     $scope.deleteCategory = function (index) {
 
-      categoryService.deleteCategory(index);
+      CategoryService.deleteCategory(index);
 
-      categoryService.getCategories(function (data) {
+      CategoryService.getCategories(function (data) {
         $scope.categories = data;
       });
     };
 
     $scope.addCategory = function () {
 
-      categoryService.addCategory($scope.category, function (data) {
+      CategoryService.addCategory($scope.category, function (data) {
         $scope.categories = data;
         $location.path('/manageCategory');
       });

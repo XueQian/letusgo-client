@@ -2,7 +2,7 @@
 
 describe("manageGoodsItemsCtrl", function () {
 
-  var createController, $location, $scope, categoryService, itemService;
+  var createController, $location, $scope, CategoryService, itemService;
 
   beforeEach(function () {
 
@@ -12,7 +12,7 @@ describe("manageGoodsItemsCtrl", function () {
 
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
-      categoryService = $injector.get('categoryService');
+      CategoryService = $injector.get('CategoryService');
       itemService = $injector.get('itemService');
       var $controller = $injector.get('$controller');
 
@@ -20,7 +20,7 @@ describe("manageGoodsItemsCtrl", function () {
 
         return $controller('manageGoodsItemsCtrl', {
           $scope: $scope,
-          categoryService: categoryService,
+          CategoryService: CategoryService,
           itemService: itemService,
           $location: $location
 
@@ -110,13 +110,13 @@ describe("manageGoodsItemsCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(categoryService, 'getCategories').and.callFake(function (callback) {
+      spyOn(CategoryService, 'getCategories').and.callFake(function (callback) {
         callback(categories);
       });
 
       createController();
 
-      categoryService.getCategories(function (data) {
+      CategoryService.getCategories(function (data) {
         expect($scope.categories).toEqual(data);
       });
 
