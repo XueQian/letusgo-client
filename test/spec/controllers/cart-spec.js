@@ -2,7 +2,7 @@
 
 describe("cartCtrl", function () {
 
-  var createController, $scope, cartService;
+  var createController, $scope, CartService;
 
   beforeEach(function () {
 
@@ -11,14 +11,14 @@ describe("cartCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      cartService = $injector.get('cartService');
+      CartService = $injector.get('CartService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
 
         return $controller('cartCtrl', {
           $scope: $scope,
-          cartService: cartService
+          CartService: CartService
         });
       };
     });
@@ -52,16 +52,16 @@ describe("cartCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(cartService, 'getCartItems').and.callFake(function (callback) {
+      spyOn(CartService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
-      spyOn(cartService, 'getTotalMoney');
+      spyOn(CartService, 'getTotalMoney');
 
       createController();
 
-      cartService.getCartItems(function (data) {
+      CartService.getCartItems(function (data) {
         expect($scope.cartItems).toEqual(data);
-        expect(cartService.getTotalMoney).toHaveBeenCalled();
+        expect(CartService.getTotalMoney).toHaveBeenCalled();
       });
 
     });
@@ -81,17 +81,17 @@ describe("cartCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(cartService, 'changeCartItemCount').and.callFake(function (item, callback) {
+      spyOn(CartService, 'changeCartItemCount').and.callFake(function (item, callback) {
         callback(items);
       });
-      spyOn(cartService, 'getTotalMoney');
+      spyOn(CartService, 'getTotalMoney');
 
       createController();
       $scope.changeCount(item);
 
-      cartService.changeCartItemCount(item, function (data) {
+      CartService.changeCartItemCount(item, function (data) {
         expect($scope.cartItems).toEqual(data);
-        expect(cartService.getTotalMoney).toHaveBeenCalled();
+        expect(CartService.getTotalMoney).toHaveBeenCalled();
       });
 
     });

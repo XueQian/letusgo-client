@@ -2,7 +2,7 @@
 
 describe("shoppingListCtrl", function () {
 
-  var createController, $scope, cartService;
+  var createController, $scope, CartService;
 
   beforeEach(function () {
 
@@ -11,14 +11,14 @@ describe("shoppingListCtrl", function () {
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      cartService = $injector.get('cartService');
+      CartService = $injector.get('CartService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
 
         return $controller('shoppingListCtrl', {
           $scope: $scope,
-          cartService: cartService
+          CartService: CartService
         });
       };
     });
@@ -52,16 +52,16 @@ describe("shoppingListCtrl", function () {
 
     it('should return items to cart', function () {
 
-      spyOn(cartService, 'getCartItems').and.callFake(function (callback) {
+      spyOn(CartService, 'getCartItems').and.callFake(function (callback) {
         callback(items);
       });
-      spyOn(cartService, 'getTotalMoney');
+      spyOn(CartService, 'getTotalMoney');
 
       createController();
 
-      cartService.getCartItems(function (data) {
+      CartService.getCartItems(function (data) {
         expect($scope.boughtItems).toEqual(data);
-        expect(cartService.getTotalMoney).toHaveBeenCalled();
+        expect(CartService.getTotalMoney).toHaveBeenCalled();
       });
 
     });
@@ -69,20 +69,20 @@ describe("shoppingListCtrl", function () {
 
   describe('when remove,', function () {
 
-    it('should call remove from cartService', function () {
-      spyOn(cartService, 'remove');
+    it('should call remove from CartService', function () {
+      spyOn(CartService, 'remove');
 
       createController();
       $scope.remove();
-      expect(cartService.remove).toHaveBeenCalled;
+      expect(CartService.remove).toHaveBeenCalled;
     });
 
-    it('should call set from cartService', function () {
-      spyOn(cartService, 'set');
+    it('should call set from CartService', function () {
+      spyOn(CartService, 'set');
 
       createController();
       $scope.remove();
-      expect(cartService.set).toHaveBeenCalled;
+      expect(CartService.set).toHaveBeenCalled;
     });
 
     it('it should emit to parent_totalCount is zero', function () {
