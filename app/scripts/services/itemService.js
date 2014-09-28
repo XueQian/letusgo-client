@@ -38,7 +38,7 @@ angular.module('letusgoApp')
       $http.delete('/api/items/' + id);
     };
 
-    this.getItemById = function (id, callback) {
+    this.getItem = function (id, callback) {
       this.getGoodsItems(function (data) {
 
         var items = data || [0];

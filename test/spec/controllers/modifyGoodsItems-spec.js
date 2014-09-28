@@ -38,19 +38,19 @@ describe("modifyGoodsItemsCtrl", function () {
 
   });
 
-  describe('when getItemById', function () {
+  describe('when getItem', function () {
 
     it('should return item by id ', function () {
       var id = 0;
       var item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
 
-      spyOn(itemService, 'getItemById').and.callFake(function (id, callback) {
+      spyOn(itemService, 'getItem').and.callFake(function (id, callback) {
         callback(item);
       });
 
       createController();
 
-      itemService.getItemById(id, function (data) {
+      itemService.getItem(id, function (data) {
         expect($scope.item).toEqual(data);
       });
 

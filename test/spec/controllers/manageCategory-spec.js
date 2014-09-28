@@ -62,16 +62,16 @@ describe("manageCategoryCtrl", function () {
 
   });
 
-  describe('when getItemById', function () {
+  describe('when getItem', function () {
 
-    it('should call getItemById in itemService', function () {
+    it('should call getItem in itemService', function () {
 
       var id = 0;
-      spyOn(itemService, 'getItemById');
+      spyOn(itemService, 'getItem');
 
       createController();
-      $scope.getItemById(id);
-      expect(itemService.getItemById).toHaveBeenCalledWith(id);
+      $scope.getItem(id);
+      expect(itemService.getItem).toHaveBeenCalledWith(id);
 
     });
 

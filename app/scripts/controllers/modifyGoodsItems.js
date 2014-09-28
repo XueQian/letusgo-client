@@ -5,7 +5,7 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_manageGoodsActive');
 
-    itemService.getItemById($routeParams.id, function (data) {
+    itemService.getItem($routeParams.id, function (data) {
       $scope.item = data;
     });
 

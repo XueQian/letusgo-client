@@ -9,9 +9,8 @@ angular.module('letusgoApp')
       $scope.categories = data;
     });
 
-    $scope.getItemById = function (id) {
-
-      return itemService.getItemById(id);
+    $scope.getItem = function (id) {
+      return itemService.getItem(id);
     };
 
     $scope.deleteCategory = function (index) {
@@ -29,7 +28,6 @@ angular.module('letusgoApp')
         $scope.categories = data;
         $location.path('/manageCategory');
       });
-
     };
 
   });
