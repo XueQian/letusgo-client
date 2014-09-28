@@ -18,7 +18,7 @@ angular.module('letusgoApp')
 
       cartService.set('totalCount', 0);
 
-      $scope.$emit('parent_totalCount===0');
+      $scope.$emit('parent_totalCount is zero');
     };
   });
 

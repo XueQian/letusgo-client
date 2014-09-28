@@ -43,10 +43,10 @@ xdescribe("indexCtrl", function () {
     expect(cartService.getTotalCount).toHaveBeenCalled();
   });
 
-  it('parent_totalCount===0 should return correct value', function () {
+  it('parent_totalCount is zero should return correct value', function () {
     createController();
     $scope.$digest();
-    $rootScope.$broadcast('parent_totalCount===0');
+    $rootScope.$broadcast('parent_totalCount is zero');
     $scope.$digest();
     expect($scope.totalCount).toBe(0);
   });

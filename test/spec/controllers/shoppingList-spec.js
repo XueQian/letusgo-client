@@ -85,11 +85,11 @@ describe("shoppingListCtrl", function () {
       expect(cartService.set).toHaveBeenCalled;
     });
 
-    it('it should emit to parent_totalCount===0', function () {
+    it('it should emit to parent_totalCount is zero', function () {
       spyOn($scope, '$emit');
       createController();
       $scope.remove();
-      expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount===0');
+      expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount is zero');
     });
 
   });

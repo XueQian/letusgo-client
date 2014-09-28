@@ -16,7 +16,7 @@ angular.module('letusgoApp')
 
     });
 
-    $scope.$on('parent_totalCount===0', function () {
+    $scope.$on('parent_totalCount is zero', function () {
 
       $scope.totalCount = 0;
     });
