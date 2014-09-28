@@ -14,12 +14,12 @@
       <div class="col-md-3">小计</div>
     </div>
 
-    <div ng-repeat="orderItem in orderItems">
+    <div ng-repeat="boughtItem in boughtItems">
       <div class="row text-center">
-        <div class="col-md-3">{{orderItem.item.name}}</div>
-        <div class="col-md-3">{{orderItem.count}}</div>
-        <div class="col-md-3">{{orderItem.item.price}}</div>
-        <div class="col-md-3">{{orderItem.item.price*orderItem.count}}</div>
+        <div class="col-md-3">{{boughtItem.item.name}}</div>
+        <div class="col-md-3">{{boughtItem.count}}</div>
+        <div class="col-md-3">{{boughtItem.item.price}}</div>
+        <div class="col-md-3">{{boughtItem.item.price*boughtItem.count}}</div>
       </div>
     </div>
     <hr>

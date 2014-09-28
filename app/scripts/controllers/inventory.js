@@ -6,8 +6,8 @@ angular.module('letusgoApp')
     $scope.$emit('parent_cartActive');
 
     cartService.getCartItems(function (data) {
-      $scope.orderItems = data;
-      $scope.totalMoney = cartService.getTotalMoney($scope.orderItems);
+      $scope.boughtItems = data;
+      $scope.totalMoney = cartService.getTotalMoney($scope.boughtItems);
     });
 
     $scope.$emit('parent_totalCount');
@@ -15,9 +15,7 @@ angular.module('letusgoApp')
     $scope.remove = function () {
 
       cartService.remove();
-
       cartService.set('totalCount', 0);
-
       $scope.$emit('parent_totalCount is zero');
     };
   });

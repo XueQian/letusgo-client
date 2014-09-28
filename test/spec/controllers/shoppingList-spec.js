@@ -60,7 +60,7 @@ describe("shoppingListCtrl", function () {
       createController();
 
       cartService.getCartItems(function (data) {
-        expect($scope.orderItems).toEqual(data);
+        expect($scope.boughtItems).toEqual(data);
         expect(cartService.getTotalMoney).toHaveBeenCalled();
       });
 
