@@ -2,7 +2,7 @@
 
 describe("manageCategoryCtrl", function () {
 
-  var createController, $scope, $location, CategoryService, itemService;
+  var createController, $scope, $location, CategoryService, ItemService;
 
   beforeEach(function () {
 
@@ -13,7 +13,7 @@ describe("manageCategoryCtrl", function () {
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
       CategoryService = $injector.get('CategoryService');
-      itemService = $injector.get('itemService');
+      ItemService = $injector.get('ItemService');
       var $controller = $injector.get('$controller');
 
       createController = function () {
@@ -22,7 +22,7 @@ describe("manageCategoryCtrl", function () {
           $scope: $scope,
           $location: $location,
           CategoryService: CategoryService,
-          itemService: itemService
+          ItemService: ItemService
         });
       };
     });
@@ -64,14 +64,14 @@ describe("manageCategoryCtrl", function () {
 
   describe('when getItem', function () {
 
-    it('should call getItem in itemService', function () {
+    it('should call getItem in ItemService', function () {
 
       var id = 0;
-      spyOn(itemService, 'getItem');
+      spyOn(ItemService, 'getItem');
 
       createController();
       $scope.getItem(id);
-      expect(itemService.getItem).toHaveBeenCalledWith(id);
+      expect(ItemService.getItem).toHaveBeenCalledWith(id);
 
     });
 

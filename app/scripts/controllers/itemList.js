@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('goodsListCtrl', function ($scope, CartService, itemService) {
+  .controller('goodsListCtrl', function ($scope, CartService, ItemService) {
 
     $scope.$emit('parent_goodsListActive');
 
-    itemService.getGoodsItems(function (data) {
+    ItemService.getGoodsItems(function (data) {
       $scope.itemList = data;
     });
 

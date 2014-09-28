@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('manageGoodsItemsCtrl', function ($location, $scope, CategoryService, itemService) {
+  .controller('manageGoodsItemsCtrl', function ($location, $scope, CategoryService, ItemService) {
 
     $scope.$emit('parent_manageActive');
 
-    itemService.getGoodsItems(function (data) {
+    ItemService.getGoodsItems(function (data) {
       $scope.products = data;
     });
 
     $scope.deleteItem = function (index) {
 
-      itemService.deleteGoodsItems(index);
+      ItemService.deleteGoodsItems(index);
 
-      itemService.getGoodsItems(function (data) {
+      ItemService.getGoodsItems(function (data) {
         $scope.products = data;
       });
     };
@@ -24,7 +24,7 @@ angular.module('letusgoApp')
 
     $scope.addGoodsItems = function () {
 
-      itemService.addItem($scope.item, function (data) {
+      ItemService.addItem($scope.item, function (data) {
         $scope.products = data;
         $location.path('/manageGoodsItems');
       });

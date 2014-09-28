@@ -2,7 +2,7 @@
 
 describe("modifyGoodsItemsCtrl", function () {
 
-  var createController, $scope, CategoryService, itemService, $routeParams;
+  var createController, $scope, CategoryService, ItemService, $routeParams;
 
   beforeEach(function () {
 
@@ -12,7 +12,7 @@ describe("modifyGoodsItemsCtrl", function () {
 
       $scope = $injector.get('$rootScope').$new();
       CategoryService = $injector.get('CategoryService');
-      itemService = $injector.get('itemService');
+      ItemService = $injector.get('ItemService');
       $routeParams = $injector.get('$routeParams');
       var $controller = $injector.get('$controller');
 
@@ -21,7 +21,7 @@ describe("modifyGoodsItemsCtrl", function () {
         return $controller('modifyGoodsItemsCtrl', {
           $scope: $scope,
           CategoryService: CategoryService,
-          itemService: itemService,
+          ItemService: ItemService,
           $routeParams: $routeParams
         });
       };
@@ -44,13 +44,13 @@ describe("modifyGoodsItemsCtrl", function () {
       var id = 0;
       var item = {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'};
 
-      spyOn(itemService, 'getItem').and.callFake(function (id, callback) {
+      spyOn(ItemService, 'getItem').and.callFake(function (id, callback) {
         callback(item);
       });
 
       createController();
 
-      itemService.getItem(id, function (data) {
+      ItemService.getItem(id, function (data) {
         expect($scope.item).toEqual(data);
       });
 
@@ -93,13 +93,13 @@ describe("modifyGoodsItemsCtrl", function () {
         {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
       ];
 
-      spyOn(itemService, 'modifyItem').and.callFake(function (index, item, callback) {
+      spyOn(ItemService, 'modifyItem').and.callFake(function (index, item, callback) {
         callback(items);
       });
 
       createController();
       $scope.modifyItem(index);
-//      expect(itemService.modifyItem).toHaveBeenCalledWith(index,item,function(){});
+//      expect(ItemService.modifyItem).toHaveBeenCalledWith(index,item,function(){});
 
     });
 
