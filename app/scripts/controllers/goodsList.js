@@ -11,19 +11,21 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_totalCount');
 
+    function getTotalCount(){
+
+      cartService.getTotalCount($scope.products, function (data) {
+        cartService.set('totalCount', data);
+        $scope.$emit('parent_totalCount');
+      });
+    }
+
     $scope.addToCart = function (item) {
 
       cartService.addToCart(item, function () {
-
-        cartService.getTotalCount($scope.products, function (data) {
-
-          cartService.set('totalCount', data);
-          $scope.$emit('parent_totalCount');
-        });
-
+        getTotalCount();
       });
-
     };
+
   });
 
 
