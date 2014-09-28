@@ -5,9 +5,14 @@ angular.module('letusgoApp')
 
     $scope.$emit('parent_cartActive');
 
-    cartService.getCartItems(function (data) {
+    function getCartItems(data){
+
       $scope.cartItems = data;
       $scope.totalMoney = cartService.getTotalMoney($scope.cartItems);
+    }
+
+    cartService.getCartItems(function (data) {
+      getCartItems(data);
     });
 
     $scope.$emit('parent_totalCount');
@@ -17,19 +22,16 @@ angular.module('letusgoApp')
       cartService.getTotalCount($scope.cartItems, function (data) {
       cartService.set('totalCount', data);
       $scope.$emit('parent_totalCount');
-
     });
     }
 
     $scope.changeCount = function (newCartItem) {
 
       cartService.changeCartItemCount(newCartItem, function (data) {
-        $scope.cartItems = data;
-        $scope.totalMoney = cartService.getTotalMoney($scope.cartItems);
 
+        getCartItems(data);
         getTotalCount();
-
       });
-
     };
+
   });
