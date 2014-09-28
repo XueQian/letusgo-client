@@ -64,7 +64,7 @@ describe("manageGoodsItemsCtrl", function () {
     });
   });
 
-  describe('when deleteItems', function () {
+  describe('when deleteItem', function () {
 
     it('should call deleteGoodsItems in itemService', function () {
 
@@ -72,7 +72,7 @@ describe("manageGoodsItemsCtrl", function () {
       spyOn(itemService, 'deleteGoodsItems');
 
       createController();
-      $scope.deleteItems(index);
+      $scope.deleteItem(index);
       expect(itemService.deleteGoodsItems).toHaveBeenCalledWith(index);
 
     });
@@ -89,7 +89,7 @@ describe("manageGoodsItemsCtrl", function () {
       });
 
       createController();
-      $scope.deleteItems(index);
+      $scope.deleteItem(index);
 
       itemService.getGoodsItems(function (data) {
         expect($scope.products).toEqual(data);
