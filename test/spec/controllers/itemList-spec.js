@@ -60,7 +60,7 @@ describe("goodsListCtrl", function () {
       createController();
 
       itemService.getGoodsItems(function (data) {
-        expect($scope.products).toEqual(data);
+        expect($scope.itemList).toEqual(data);
       });
 
     });
