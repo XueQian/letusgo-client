@@ -20,7 +20,7 @@ angular
         controller: 'indexCtrl'
       })
       .when('/goodsList', {
-        templateUrl: 'views/goodsList.html',
+        templateUrl: 'views/itemList.html',
         controller: 'goodsListCtrl'
       })
       .when('/cart', {
