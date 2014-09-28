@@ -44,7 +44,7 @@ angular
         controller: 'manageCategoryCtrl'
       })
       .when('/addGoodsItems', {
-        templateUrl: 'views/addGoodsItems.html',
+        templateUrl: 'views/addItem.html',
         controller: 'manageGoodsItemsCtrl'
       })
       .when('/modifyCategory/:id', {
