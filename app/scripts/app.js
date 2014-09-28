@@ -36,7 +36,7 @@ angular
         controller: 'manageCategoryCtrl'
       })
       .when('/manageGoodsItems', {
-        templateUrl: 'views/manageGoodsItems.html',
+        templateUrl: 'views/manageItem.html',
         controller: 'manageGoodsItemsCtrl'
       })
       .when('/addCategory', {
