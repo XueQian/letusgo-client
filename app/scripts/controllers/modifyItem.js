@@ -3,7 +3,11 @@
 angular.module('letusgoApp')
   .controller('modifyGoodsItemsCtrl', function ($scope, CategoryService, ItemService, $routeParams) {
 
-    $scope.$emit('parent_manageActive');
+    function EventName(){
+      this.PARENT_MANAGE_ACTIVE='parent_manageActive';
+    }
+
+    $scope.$emit(new EventName().PARENT_MANAGE_ACTIVE);
 
     ItemService.getItem($routeParams.id, function (data) {
       $scope.item = data;
