@@ -3,7 +3,11 @@
 angular.module('letusgoApp')
   .controller('manageCategoryCtrl', function ($scope, $location, CategoryService, ItemService) {
 
-    $scope.$emit('parent_manageActive');
+    function EventName(){
+      this.PARENT_MANAGE_ACTIVE='parent_manageActive';
+    }
+
+    $scope.$emit(new EventName().PARENT_MANAGE_ACTIVE);
 
     CategoryService.getCategories(function (data) {
       $scope.categories = data;
