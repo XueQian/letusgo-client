@@ -9,7 +9,7 @@ angular.module('letusgoApp')
 
     $scope.$emit(new EventName().PARENT_MANAGE_ACTIVE);
 
-    CategoryService.getcategoryById($routeParams.id, function (data) {
+    CategoryService.getcategory($routeParams.id, function (data) {
       $scope.category = data;
     });
 
