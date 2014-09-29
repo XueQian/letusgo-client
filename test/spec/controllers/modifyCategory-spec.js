@@ -31,7 +31,7 @@ describe("modifyCategoryCtrl", function () {
     it('it should emit to parent_goodsListActive', function () {
       spyOn($scope, '$emit');
       createController();
-      expect($scope.$emit).toHaveBeenCalledWith('parent_manageGoodsActive');
+      expect($scope.$emit).toHaveBeenCalledWith('parent_manageActive');
     });
 
   });

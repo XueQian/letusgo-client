@@ -30,10 +30,10 @@ describe("modifyGoodsItemsCtrl", function () {
 
   describe('when load', function () {
 
-    it('it should emit to parent_manageGoodsActive', function () {
+    it('it should emit to parent_manageActive', function () {
       spyOn($scope, '$emit');
       createController();
-      expect($scope.$emit).toHaveBeenCalledWith('parent_manageGoodsActive');
+      expect($scope.$emit).toHaveBeenCalledWith('parent_manageActive');
     });
 
   });
