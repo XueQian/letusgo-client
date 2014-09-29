@@ -59,12 +59,12 @@ xdescribe("indexCtrl", function () {
     expect($scope.indexActive).toBe(true);
   });
 
-  xit('parent_goodsListActive should return correct value', function () {
+  xit('parent_itemListActive should return correct value', function () {
     createController();
     $scope.$digest();
-    $rootScope.$broadcast('parent_goodsListActive');
+    $rootScope.$broadcast('parent_itemListActive');
     $scope.$digest();
-    expect($scope.goodsListActive).toBe(true);
+    expect($scope.itemListActive).toBe(true);
   });
 
   xit('parent_cartActive should return correct value', function () {

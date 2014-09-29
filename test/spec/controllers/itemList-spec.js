@@ -27,10 +27,10 @@ describe("goodsListCtrl", function () {
   });
 
   describe('when load', function () {
-    it('it should emit to parent_goodsListActive', function () {
+    it('it should emit to parent_itemListActive', function () {
       spyOn($scope, '$emit');
       createController();
-      expect($scope.$emit).toHaveBeenCalledWith('parent_goodsListActive');
+      expect($scope.$emit).toHaveBeenCalledWith('parent_itemListActive');
     });
 
     it('it should emit to parent_totalCount', function () {

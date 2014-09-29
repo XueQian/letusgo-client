@@ -3,7 +3,7 @@
 angular.module('letusgoApp')
   .controller('goodsListCtrl', function ($scope, CartService, ItemService) {
 
-    $scope.$emit('parent_goodsListActive');
+    $scope.$emit('parent_itemListActive');
 
     ItemService.getGoodsItems(function (data) {
       $scope.itemList = data;

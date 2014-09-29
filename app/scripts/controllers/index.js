@@ -24,15 +24,15 @@ angular.module('letusgoApp')
     $scope.$on('parent_indexActive', function () {
 
       $scope.indexActive = true;
-      $scope.goodsListActive = false;
+      $scope.itemListActive = false;
       $scope.cartActive = false;
       $scope.manageActive = false;
     });
 
-    $scope.$on('parent_goodsListActive', function () {
+    $scope.$on('parent_itemListActive', function () {
 
       $scope.indexActive = false;
-      $scope.goodsListActive = true;
+      $scope.itemListActive = true;
       $scope.cartActive = false;
       $scope.manageActive = false;
     });
@@ -40,7 +40,7 @@ angular.module('letusgoApp')
     $scope.$on('parent_cartActive', function () {
 
       $scope.indexActive = false;
-      $scope.goodsListActive = false;
+      $scope.itemListActive = false;
       $scope.cartActive = true;
       $scope.manageActive = false;
     });
@@ -48,7 +48,7 @@ angular.module('letusgoApp')
     $scope.$on('parent_manageActive', function () {
 
       $scope.indexActive = false;
-      $scope.goodsListActive = false;
+      $scope.itemListActive = false;
       $scope.cartActive = false;
       $scope.manageActive = true;
     });
