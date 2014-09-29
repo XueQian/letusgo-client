@@ -36,19 +36,19 @@ describe("modifyCategoryCtrl", function () {
 
   });
 
-  describe('when getcategoryById', function () {
+  describe('when getcategory', function () {
 
     it('should return category by id ', function () {
       var id = 0;
       var category = {id: 0, name: '服装鞋包'};
 
-      spyOn(CategoryService, 'getcategoryById').and.callFake(function (id, callback) {
+      spyOn(CategoryService, 'getcategory').and.callFake(function (id, callback) {
         callback(category);
       });
 
       createController();
 
-      CategoryService.getcategoryById(id, function (data) {
+      CategoryService.getcategory(id, function (data) {
         expect($scope.category).toEqual(data);
       });
 
