@@ -39,13 +39,11 @@ angular.module('letusgoApp')
     };
 
     this.getItem = function (id, callback) {
-      this.getGoodsItems(function (data) {
 
-        var items = data || [0];
-
-        var result = _.find(items, {id: parseInt(id)});
-        callback(result);
-      });
+      $http.get('/api/items/' + id)
+        .success(function (data) {
+          callback(data);
+        });
     };
 
     this.modifyItem = function (id, item, callback) {
