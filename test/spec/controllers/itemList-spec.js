@@ -81,18 +81,14 @@ describe("goodsListCtrl", function () {
       spyOn(CartService, 'addToCart').and.callFake(function (item, callback) {
         callback();
       });
-      spyOn(CartService, 'getTotalCount').and.callFake(function (items, callback) {
-        callback(items);
-      });
-      spyOn(CartService, 'set');
+      spyOn($scope, '$emit');
 
       createController();
       $scope.addToCart(item);
 
       CartService.addToCart(item, function () {
-        CartService.addToCart(item, function (data) {
-          expect(CartService.set).toHaveBeenCalled();
-        });
+        expect($scope.$emit).toHaveBeenCalledWith('parent_totalCount');
+
       });
 
     });

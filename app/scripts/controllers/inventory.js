@@ -21,7 +21,6 @@ angular.module('letusgoApp')
     $scope.remove = function () {
 
       CartService.remove();
-      CartService.set('totalCount', 0);
       $scope.$emit(new EventName().PARENT_TOTAL_COUNT_IS_ZERO);
     };
   });

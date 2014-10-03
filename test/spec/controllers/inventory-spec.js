@@ -77,14 +77,6 @@ describe("shoppingListCtrl", function () {
       expect(CartService.remove).toHaveBeenCalled;
     });
 
-    it('should call set from CartService', function () {
-      spyOn(CartService, 'set');
-
-      createController();
-      $scope.remove();
-      expect(CartService.set).toHaveBeenCalled;
-    });
-
     it('it should emit to parent_totalCount is zero', function () {
       spyOn($scope, '$emit');
       createController();

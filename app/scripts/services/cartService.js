@@ -56,6 +56,10 @@ angular.module('letusgoApp')
       return localStorageService.set(key, value);
     };
 
+    this.get = function (key) {
+      return localStorageService.get(key);
+    };
+
     this.getTotalMoney = function (cartItems) {
 
       var totalMoney = 0;
@@ -71,6 +75,13 @@ angular.module('letusgoApp')
     this.remove = function () {
 
       $http.post('/api/payment');
+    };
+
+    this.getTotalCount1= function(){
+      if(localStorageService.get('totalCount')===null){
+        localStorageService.set('totalCount',0);
+      }
+      return localStorageService.get('totalCount');
     };
 
   });
