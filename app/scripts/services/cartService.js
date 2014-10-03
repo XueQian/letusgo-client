@@ -5,7 +5,6 @@ angular.module('letusgoApp')
 
     this.getCartItems = function (callback) {
       $http.get('/api/cartItems').
-
         success(function (data) {
           callback(data);
         });
