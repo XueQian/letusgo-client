@@ -3,10 +3,10 @@
 angular.module('letusgoApp')
   .controller('shoppingListCtrl', function ($scope, CartService) {
 
-    function EventName(){
-      this.PARENT_CART_ACTIVE='parent_cartActive';
-      this.PARENT_TOTAL_COUNT='parent_totalCount';
-      this.PARENT_TOTAL_COUNT_IS_ZERO='parent_totalCount is zero';
+    function EventName() {
+      this.PARENT_CART_ACTIVE = 'parent_cartActive';
+      this.PARENT_TOTAL_COUNT = 'parent_totalCount';
+      this.PARENT_TOTAL_COUNT_IS_ZERO = 'parent_totalCount is zero';
     }
 
     $scope.$emit(new EventName().PARENT_CART_ACTIVE);

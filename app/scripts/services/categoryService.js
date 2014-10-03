@@ -39,7 +39,7 @@ angular.module('letusgoApp')
       $http.delete('/api/categories/' + id);
     };
 
-    this.getcategory = function (id,callback) {
+    this.getcategory = function (id, callback) {
 
       $http.get('/api/categories/' + id)
         .success(function (data) {

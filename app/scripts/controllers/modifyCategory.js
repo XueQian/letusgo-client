@@ -3,8 +3,8 @@
 angular.module('letusgoApp')
   .controller('modifyCategoryCtrl', function ($scope, CategoryService, $routeParams) {
 
-    function EventName(){
-      this.PARENT_MANAGE_ACTIVE='parent_manageActive';
+    function EventName() {
+      this.PARENT_MANAGE_ACTIVE = 'parent_manageActive';
     }
 
     $scope.$emit(new EventName().PARENT_MANAGE_ACTIVE);

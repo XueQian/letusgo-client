@@ -3,9 +3,9 @@
 angular.module('letusgoApp')
   .controller('goodsListCtrl', function ($scope, CartService, ItemService) {
 
-    function EventName(){
-      this.PARENT_ITEMLIST_ACTIVE='parent_itemListActive';
-      this.PARENT_TOTAL_COUNT='parent_totalCount';
+    function EventName() {
+      this.PARENT_ITEMLIST_ACTIVE = 'parent_itemListActive';
+      this.PARENT_TOTAL_COUNT = 'parent_totalCount';
     }
 
     $scope.$emit(new EventName().PARENT_ITEMLIST_ACTIVE);
