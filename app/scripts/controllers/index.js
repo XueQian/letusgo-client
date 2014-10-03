@@ -14,8 +14,6 @@ angular.module('letusgoApp')
         });
       });
 
-//      $scope.totalCount=CartService.getTotalCount1();
-
     });
 
     $scope.$on('parent_totalCount is zero', function () {
