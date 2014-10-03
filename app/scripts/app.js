@@ -43,7 +43,7 @@ angular
         templateUrl: 'views/addCategory.html',
         controller: 'manageCategoryCtrl'
       })
-      .when('/addGoodsItems', {
+      .when('/addItem', {
         templateUrl: 'views/addItem.html',
         controller: 'manageItemCtrl'
       })
