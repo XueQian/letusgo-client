@@ -51,9 +51,9 @@ angular
         templateUrl: 'views/modifyCategory.html',
         controller: 'modifyCategoryCtrl'
       })
-      .when('/modifyGoodsItems/:id', {
+      .when('/modifyItem/:id', {
         templateUrl: 'views/modifyItem.html',
-        controller: 'modifyGoodsItemsCtrl'
+        controller: 'modifyItemCtrl'
       })
       .otherwise({
         redirectTo: '/'

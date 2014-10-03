@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('modifyGoodsItemsCtrl', function ($scope, CategoryService, ItemService, $routeParams) {
+  .controller('modifyItemCtrl', function ($scope, CategoryService, ItemService, $routeParams) {
 
     function EventName() {
       this.PARENT_MANAGE_ACTIVE = 'parent_manageActive';
