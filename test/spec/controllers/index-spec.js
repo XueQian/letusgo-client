@@ -31,34 +31,15 @@ describe('indexCtrl', function () {
     expect($scope.$emit).toHaveBeenCalledWith('parent_indexActive');
   });
 
-
-  xit('parent_totalCount should return correct value', function () {
-    var data = 2;
-    spyOn( CartService,'getCartItems').and.callFake(function(callback){
-      callback();
-    });
-    spyOn(CartService, 'getTotalCount').and.callFake(function (callback) {
-      callback(data);
-    });
-    createController();
-    $scope.$digest();
-    $rootScope.$broadcast('parent_totalCount');
-    $scope.$digest();
-    expect($scope.totalCount).toBe(2);
-  });
-
-  xit('parent_totalCount should should call getTotalCount in CartService', function () {
-    var  items = [
+  it('parent_totalCount should should call getTotalCount in CartService', function () {
+    var  data = [
       {item: {barcode: 'ITEM00000', 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1}
     ];
-    var data = 1;
 
     spyOn(CartService, 'getCartItems').and.callFake(function (callback) {
-      callback(items);
-    });
-    spyOn(CartService, 'getTotalCount').and.callFake(items,function(callback){
       callback(data);
     });
+    spyOn(CartService,'getTotalCount');
 
     createController();
     $scope.$digest();
@@ -67,9 +48,6 @@ describe('indexCtrl', function () {
 
     CartService.getCartItems(function () {
       expect(CartService.getTotalCount).toHaveBeenCalled();
-      CartService.getTotalCount(function(data){
-        expect($scope.totalCount).toEqual(data);
-      });
     });
 
   });
