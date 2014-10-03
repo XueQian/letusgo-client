@@ -45,11 +45,10 @@ angular.module('letusgoApp')
         });
     };
 
-    this.getTotalCount = function (cartLists, callback) {
-      var result = _.reduce(_.pluck(cartLists, 'count'), function (count1, count2) {
+    this.getTotalCount = function (cartLists) {
+      return  _.reduce(_.pluck(cartLists, 'count'), function (count1, count2) {
         return count1 + count2;
       });
-      callback(result);
     };
 
     this.getTotalMoney = function (cartItems) {

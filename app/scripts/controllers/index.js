@@ -8,10 +8,7 @@ angular.module('letusgoApp')
 
       CartService.getCartItems(function (data) {
 
-        var cartItems = data;
-        CartService.getTotalCount(cartItems, function (data) {
-          $scope.totalCount = data;
-        });
+          $scope.totalCount = CartService.getTotalCount(data);
       });
 
     });

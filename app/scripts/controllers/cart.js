@@ -24,9 +24,9 @@ angular.module('letusgoApp')
 
     function getTotalCount() {
 
-      CartService.getTotalCount($scope.cartItems, function () {
-        $scope.$emit(new EventName().PARENT_TOTAL_COUNT);
-      });
+      CartService.getTotalCount($scope.cartItems);
+      $scope.$emit(new EventName().PARENT_TOTAL_COUNT);
+
     }
 
     $scope.changeCount = function (newCartItem) {
