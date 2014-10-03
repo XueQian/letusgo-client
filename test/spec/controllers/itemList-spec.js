@@ -1,6 +1,6 @@
 'use strict';
 
-describe("goodsListCtrl", function () {
+describe("itemListCtrl", function () {
 
   var createController, $scope, CartService, ItemService;
 
@@ -17,7 +17,7 @@ describe("goodsListCtrl", function () {
 
       createController = function () {
 
-        return $controller('goodsListCtrl', {
+        return $controller('itemListCtrl', {
           $scope: $scope,
           CartService: CartService,
           ItemService: ItemService

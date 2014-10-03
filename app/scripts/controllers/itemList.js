@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('letusgoApp')
-  .controller('goodsListCtrl', function ($scope, CartService, ItemService) {
+  .controller('itemListCtrl', function ($scope, CartService, ItemService) {
 
     function EventName() {
       this.PARENT_ITEMLIST_ACTIVE = 'parent_itemListActive';

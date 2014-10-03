@@ -19,9 +19,9 @@ angular
         templateUrl: 'views/index.html',
         controller: 'indexCtrl'
       })
-      .when('/goodsList', {
+      .when('/itemList', {
         templateUrl: 'views/itemList.html',
-        controller: 'goodsListCtrl'
+        controller: 'itemListCtrl'
       })
       .when('/cart', {
         templateUrl: 'views/cart.html',
