@@ -35,9 +35,9 @@ angular
         templateUrl: 'views/manageCategory.html',
         controller: 'manageCategoryCtrl'
       })
-      .when('/manageGoodsItems', {
+      .when('/manageItem', {
         templateUrl: 'views/manageItem.html',
-        controller: 'manageGoodsItemsCtrl'
+        controller: 'manageItemCtrl'
       })
       .when('/addCategory', {
         templateUrl: 'views/addCategory.html',
@@ -45,7 +45,7 @@ angular
       })
       .when('/addGoodsItems', {
         templateUrl: 'views/addItem.html',
-        controller: 'manageGoodsItemsCtrl'
+        controller: 'manageItemCtrl'
       })
       .when('/modifyCategory/:id', {
         templateUrl: 'views/modifyCategory.html',
