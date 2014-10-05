@@ -19,7 +19,6 @@ angular.module('letusgoApp')
           return item.name === cartItem.item.name;
         });
         if (hasExistItem) {
-
           var existCartItem = _.find(cartItems, function (cartItem) {
             return item.name === cartItem.item.name;
           });
@@ -28,14 +27,17 @@ angular.module('letusgoApp')
         } else {
           cartItems.push({item: item, count: 1});
         }
+
         $http.post('/api/cartItems', {cartItems: cartItems})
           .success(function () {
             callback();
           });
+
       });
     };
 
     this.changeCartItemCount = function (cartItem, callback) {
+
       var id = cartItem.item.id;
       $http.put('/api/cartItems/' + id, {cartItem: cartItem})
         .success(function (data) {
@@ -43,8 +45,9 @@ angular.module('letusgoApp')
         });
     };
 
-    this.getTotalCount = function (cartLists) {
-      return  _.reduce(_.pluck(cartLists, 'count'), function (count1, count2) {
+    this.getTotalCount = function (cartItems) {
+
+      return  _.reduce(_.pluck(cartItems, 'count'), function (count1, count2) {
         return count1 + count2;
       });
     };
@@ -52,17 +55,12 @@ angular.module('letusgoApp')
     this.getTotalMoney = function (cartItems) {
 
       var totalMoney = 0;
-
       _(cartItems).forEach(function (cartItem) {
-
-        totalMoney += cartItem.item.price * cartItem.count;
       });
-
       return totalMoney;
     };
 
     this.remove = function () {
-
       $http.post('/api/payment');
     };
 
