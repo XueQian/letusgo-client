@@ -40,7 +40,7 @@ describe('cartService', function () {
         expect(cartItems[0].count).toBe(2);
         expect(cartItems.length).toBe(2);
       });
-      $httpBackend.flush();
+    $httpBackend.flush();
   });
 
   it('should add to cart when does not have exist item use post',function(){
@@ -56,10 +56,11 @@ describe('cartService', function () {
 
   it('should change cartItem count use put',function (){
     var cartItem = {item: {id:1, 'category': '服装鞋包', name: '服装１', 'price': 11, 'unit': '件'}, count: 1};
-    $httpBackend.expectPUT('/api/cartItems/1').respond(200, cartItems);
+    $httpBackend.expectPUT('/api/cartItems/1').respond(200, cartItem);
     cartService.changeCartItemCount(cartItem,function(data){
       expect(data.count).toBe(1);
     });
+    $httpBackend.flush();
   });
 
   it('should have getTotalCount function',function(){
