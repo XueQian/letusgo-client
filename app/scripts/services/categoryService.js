@@ -14,20 +14,20 @@ angular.module('letusgoApp')
 
       this.getCategories(function (data) {
 
-        var categories = data;
-        var hasExistCategory = _.any(categories, function (categories) {
+        var categoryList = data;
+        var hasExistCategory = _.any(categoryList, function (newCategory) {
 
-          return category.name === categories.name;
+          return category.name === newCategory.name;
         });
         if (!hasExistCategory) {
 
-          var id = _.pluck(categories, 'id');
+          var id = _.pluck(categoryList, 'id');
           category.id = _.max(id) + 1;
 
-          categories.push(category);
+          categoryList.push(category);
         }
 
-        $http.post('/api/categories', {categories: categories})
+        $http.post('/api/categories', {categoryList: categoryList})
           .success(function (data) {
             callback(data);
           });

@@ -63,7 +63,6 @@ angular.module('letusgoApp')
     };
 
     this.remove = function () {
-
       $http.post('/api/payment');
     };
 

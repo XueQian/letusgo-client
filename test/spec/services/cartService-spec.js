@@ -2,13 +2,14 @@
 'use strict';
 
 describe('cartService', function () {
-  var cartService, $httpBackend, cartItems;
+  var cartService, $httpBackend, cartItems,$http;
 
   beforeEach(function () {
     module('letusgoApp');
     inject(function ($injector) {
       cartService = $injector.get('CartService');
       $httpBackend = $injector.get('$httpBackend');
+      $http=$injector.get('$http');
     });
 
     cartItems = [
@@ -72,10 +73,9 @@ describe('cartService', function () {
   });
 
   it('should remove cartItems use post',function(){
-    $httpBackend.expectPOST('/api/payment').respond(200, cartItems);
+    spyOn($http,'post');
     cartService.remove();
-    console.log(cartItems);
-//    expect(cartItems.length).toBe(2);
+    expect($http.post.calls.count()).toBe(1);
   });
 
 });
