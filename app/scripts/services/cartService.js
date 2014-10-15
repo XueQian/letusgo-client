@@ -15,7 +15,7 @@ angular.module('letusgoApp')
 
         var cartItems = data;
 
-        if (hasExisItem(item,data)) {
+        if (hasExistItem(item,data)) {
           var existCartItem = _.find(cartItems, function (cartItem) {
             return item.name === cartItem.item.name;
           });
@@ -64,7 +64,7 @@ angular.module('letusgoApp')
       $http.post('/api/payment');
     };
 
-    function hasExisItem(item,cartItems){
+    function hasExistItem(item,cartItems){
 
       return _.any(cartItems, function (cartItem) {
         return item.name === cartItem.item.name;
