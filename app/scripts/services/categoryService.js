@@ -18,10 +18,7 @@ angular.module('letusgoApp')
 
         if (!hasExistCategory(category,categoryList)) {
 
-          var id = _.pluck(categoryList, 'id');
-          category.id = _.max(id) + 1;
-
-          categoryList.push(category);
+          setExistCatogory(category,categoryList);
         }
 
         $http.post('/api/categories', {categoryList: categoryList})
@@ -57,6 +54,13 @@ angular.module('letusgoApp')
       return _.any(categoryList, function (aCategory) {
         return category.name === aCategory.name;
       });
+    }
+
+    function setExistCatogory(category,categoryList){
+      var id = _.pluck(categoryList, 'id');
+      category.id = _.max(id) + 1;
+
+      categoryList.push(category);
     }
 
   });
