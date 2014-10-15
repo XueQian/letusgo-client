@@ -15,11 +15,8 @@ angular.module('letusgoApp')
       this.getGoodsItems(function (data) {
 
         var itemList = data;
-        var hasExistItem = _.any(itemList, function (itemList) {
 
-          return item.name === itemList.name;
-        });
-        if (!hasExistItem) {
+        if (!hasExistItem(item,itemList)) {
 
           var id = _.pluck(itemList, 'id');
           item.id = _.max(id) + 1;
@@ -53,6 +50,13 @@ angular.module('letusgoApp')
           callback(data);
         });
     };
+
+    function hasExistItem(item,itemList){
+
+      return _.any(itemList, function (itemList) {
+        return item.name === itemList.name;
+      });
+    }
 
   });
 
