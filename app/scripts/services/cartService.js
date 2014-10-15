@@ -16,9 +16,7 @@ angular.module('letusgoApp')
         var cartItems = data;
 
         if (hasExistItem(item,data)) {
-          var existCartItem = _.find(cartItems, function (cartItem) {
-            return item.name === cartItem.item.name;
-          });
+          var existCartItem = getExistCartItem(item,cartItems);
           existCartItem.count++;
 
         } else {
@@ -33,6 +31,7 @@ angular.module('letusgoApp')
       });
 
     };
+
 
     this.changeCartItemCount = function (cartItem, callback) {
 
@@ -67,6 +66,13 @@ angular.module('letusgoApp')
     function hasExistItem(item,cartItems){
 
       return _.any(cartItems, function (cartItem) {
+        return item.name === cartItem.item.name;
+      });
+    }
+
+    function getExistCartItem(item,cartItems){
+
+      return _.find(cartItems, function (cartItem) {
         return item.name === cartItem.item.name;
       });
     }
